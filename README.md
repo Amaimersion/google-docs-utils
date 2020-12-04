@@ -1,6 +1,6 @@
 # ChromeExtension-GoogleDocsUtil
-When writing a Chrome Extension, in some cases you want to work with Google Docs. 
-But working with Google Docs is not easy, it does not follow the normal way of interacting with homepages from a Chrome Extension. 
+When writing a Chrome Extension, in some cases you want to work with Google Docs.
+But working with Google Docs is not easy, it does not follow the normal way of interacting with homepages from a Chrome Extension.
 
 This googleDocsUtil.js script is made to help interacting with a Google Docs document. It works as a Content Script and should be accessed from another of your Content Scripts.
 
@@ -14,7 +14,7 @@ This googleDocsUtil.js script is made to help interacting with a Google Docs doc
 - Remove highlight
 
 # Example
-Please see ![sample-extension](/sample-extension) for a fully working Chrome Extension which can get the text from a Google Doc page. 
+Please see ![sample-extension](/sample-extension) for a fully working Chrome Extension which can get the text from a Google Doc page.
 
 # Usage
 
@@ -33,7 +33,7 @@ for(var i= 0; i < googleDocument.text.length; i++)
 }
 
 //The selected text
-console.log("The selected text is: " + googleDocument.selectedText);
+console.log("The selected text is: " + googleDocument.selectionText.join(" "));
 
 
 //Get the word at the caret
@@ -55,7 +55,7 @@ googleDocsUtil.highlight(10, 20, googleDocument);
 ```
 
 # Interface
-googleDocsUtil provides the following Interface: 
+googleDocsUtil provides the following Interface:
 
 ```
 function getGoogleDocument(); /* Returns a googleDocument object used below*/
@@ -67,7 +67,7 @@ function cleanDocumentText(text);
 ```
 
 ## function getGoogleDocument()
-**Desciption** 
+**Desciption**
 
 The main call to get all the information about the Google Docs document.
 
@@ -75,13 +75,12 @@ The main call to get all the information about the Google Docs document.
 
 None
 
-**Returns** 
+**Returns**
 
 An element containing
 ```
 {
-  text: [] /*An array of strings, each string is a line in the document. Means the number of strings is the number of lines in the document*/ 
-  selectedText /* Contains the selected text, if no text is selected it is an empty string */
+  text: [] /*An array of strings, each string is a line in the document. Means the number of strings is the number of lines in the document*/
   caret: {
     index /* index of the caret in the document */
     lineIndex /* index of the caret on the current line */
@@ -96,46 +95,49 @@ An element containing
 	lineElement /* A reference to the "kix-lineview" which contains the node element*/
 	text /* The text the node contains */
   }]
+  selectionText: [] // array of lines (from top to bottom) which contains selected text
+  selectionRect: [] // array of lines (from top to bottom) which contains DOMRect of selected text
+  selectionNode: [] // array of lines (from top to bottom) which contains HTMLElement of selection
 }
 ```
 
 ## function findWordAtCaret(googleDocument)
-**Desciption** 
+**Desciption**
 
 Returns the word the caret is at. If there is no word at the cursor, it will return an empty string.
 
-**Arguments** 
+**Arguments**
 
 googleDocument: Returned from getGoogleDocument()
 
-**Returns** 
+**Returns**
 
 A string of the found word at the cursor
 
 ## function getText(startIndex, endIndex, googleDocument)
-**Desciption** 
+**Desciption**
 
 Get the text within from the start index to end index
 
-**Arguments** 
+**Arguments**
 
 startIndex: The start index in the text
 
 endIndex: The end index in the text
 
-googleDocument: The returned object from getGoogleDocument() 
+googleDocument: The returned object from getGoogleDocument()
 
-**Returns** 
+**Returns**
 
 A string of the found text
 
 
 ## function highlight(startIndex, endIndex, googleDocument)
-**Desciption** 
+**Desciption**
 
 Creates an highlight starting at startIndex and ends at endIndex. If the text changes remove the highlight and set a new highlight
 
-**Arguments** 
+**Arguments**
 
 startIndex: The start index in the text
 
@@ -143,44 +145,44 @@ endIndex: The end index in the text
 
 googleDocument: Returned from getGoogleDocument()
 
-**Returns** 
+**Returns**
 
 void
- 
+
 ## function removeHighlightNodes()
-**Desciption** 
+**Desciption**
 Removes all highlights
 
-**Arguments** 
+**Arguments**
 
 None
 
-**Returns** 
+**Returns**
 
 void
 
 ## function cleanDocumentText(text)
-**Desciption** 
+**Desciption**
 
 If the text from the document is recived from elsewhere, you can use this method to clean the text of nonsensable characters.
- 
-**Arguments** 
 
-text: Text from the Google Docs document recived from elsewhere. 
+**Arguments**
 
-**Returns** 
+text: Text from the Google Docs document recived from elsewhere.
+
+**Returns**
 
 The text cleaned of \u200B and non breaking spaces.
 
 # Limitations
-It can only get the text of what is loaded in Google Docs. 
+It can only get the text of what is loaded in Google Docs.
 When you open a Google Docs document, Google Docs only load the text of first page. The rest of the text is not loaded before the user scrolls down.
 
 # Not implemented
 - Get other peoples caret index in the same document
 - Get other peoples selected text in the same document
 
-# MIT License 
+# MIT License
 Copyright (c) 2017 Dictus ApS
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
