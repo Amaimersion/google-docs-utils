@@ -1,4 +1,4 @@
-export default (function () {
+const googleDocs = (function () {
   //- - - - - - - - - - - - - - - - - - - -
   // General
   //- - - - - - - - - - - - - - - - - - - -
@@ -393,7 +393,7 @@ export default (function () {
     for(i = 0; i < highlightNodes.length; i++)
     {
             highlightNodes[i].remove();
-    }     
+    }
   }
 
   //Index: The index on the local element
