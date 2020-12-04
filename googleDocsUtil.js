@@ -1,4 +1,4 @@
-const googleDocs = (function () {
+export default (function () {
   //- - - - - - - - - - - - - - - - - - - -
   // General
   //- - - - - - - - - - - - - - - - - - - -
