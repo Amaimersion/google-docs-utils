@@ -45,9 +45,10 @@ export default (function () {
     var nodes = [];
     var lineCount = 0;
     var globalIndex = 0;
-    var selectedText = '';
-    var exportedSelectionRect = undefined;
     var paragraphrenderers = document.querySelectorAll(classNames.paragraph);
+    var selectionText = [];
+    var selectionRect = [];
+    var selectionNode = [];
 
     if (containsUserCaretDom()) {
       caret = getUserCaretDom();
@@ -90,32 +91,35 @@ export default (function () {
 
           for (var l = 0; l < selectionOverlays.length; l++) {
             var selectionOverlay = selectionOverlays[l];
-            var selectionRect = selectionOverlay.getBoundingClientRect();
-
-            if (selectionRect) exportedSelectionRect = selectionRect;
+            var selectionOverlayRect = selectionOverlay.getBoundingClientRect();
 
             if (
               doesRectsOverlap(
                 wordhtmlgeneratorWordNodeRect,
-                selectionOverlay.getBoundingClientRect()
+                selectionOverlayRect
               )
             ) {
               var selectionStartIndex = getLocalCaretIndex(
-                selectionRect.left - wordhtmlgeneratorWordNodeRect.left,
+                selectionOverlayRect.left - wordhtmlgeneratorWordNodeRect.left,
                 wordhtmlgeneratorWordNodes[k],
                 lineviews[j]
               );
               var selectionEndIndex = getLocalCaretIndex(
-                selectionRect.left +
-                selectionRect.width -
+                selectionOverlayRect.left +
+                selectionOverlayRect.width -
                 wordhtmlgeneratorWordNodeRect.left,
                 wordhtmlgeneratorWordNodes[k],
                 lineviews[j]
               );
-              selectedText += nodeText.substring(
+
+              const selectedText = nodeText.substring(
                 selectionStartIndex,
                 selectionEndIndex
               );
+
+              selectionText.push(selectedText);
+              selectionRect.push(selectionOverlayRect);
+              selectionNode.push(wordhtmlgeneratorWordNodes[k]);
             }
           }
 
@@ -129,13 +133,14 @@ export default (function () {
     return {
       nodes: nodes,
       text: text,
-      selectedText: selectedText,
       caret: {
         index: caretIndex,
         lineIndex: caretLineIndex,
         line: caretLine,
       },
-      selectionRect: exportedSelectionRect,
+      selectionText: selectionText,
+      selectionRect: selectionRect,
+      selectionNode: selectionNode
     };
   }
 
