@@ -1,6 +1,6 @@
 {
   "name": "google-docs-utils",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "main": "googleDocsUtil.js",
   "repository": "https://github.com/Amaimersion/ChromeExtension-GoogleDocsUtil.git",
   "author": "Sergey Kuznetsov <amatsukine@gmail.com>",

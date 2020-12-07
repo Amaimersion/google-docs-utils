@@ -12,6 +12,7 @@ This googleDocsUtil.js script is made to help interacting with a Google Docs doc
 - Get the user selection in the Google Docs document
 - Highlight from/to index in the Google Docs document
 - Remove highlight
+- Interaction with keyboard events
 
 # Example
 Please see ![sample-extension](/sample-extension) for a fully working Chrome Extension which can get the text from a Google Doc page.
@@ -98,6 +99,7 @@ An element containing
   selectionText: [] // array of lines (from top to bottom) which contains selected text
   selectionRect: [] // array of lines (from top to bottom) which contains DOMRect of selected text
   selectionNode: [] // array of lines (from top to bottom) which contains HTMLElement of selection
+  textEventTarget: (Document | null); // use this for dispatching keyboard events. These events will be handled by Google Docs
 }
 ```
 

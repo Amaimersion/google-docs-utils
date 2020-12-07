@@ -11,6 +11,7 @@ export default (function () {
     cursor: '.kix-cursor',
     cursorName: '.kix-cursor-name',
     cursorCaret: '.kix-cursor-caret',
+    textEventTargetIframe: 'iframe.docs-texteventtarget-iframe'
   };
 
   // Google Docs like to add \u200B, \u200C (&zwnj) and non breaking spaces to make sure the browser shows the text correct.
@@ -130,6 +131,12 @@ export default (function () {
         lineCount++;
       }
     }
+
+    // Google Docs uses special iframe for text event handling
+    const textEventTargetIframe = document.querySelector(
+      classNames.textEventTargetIframe
+    );
+
     return {
       nodes: nodes,
       text: text,
@@ -138,6 +145,11 @@ export default (function () {
         lineIndex: caretLineIndex,
         line: caretLine,
       },
+      textEventTarget: (
+        textEventTargetIframe ?
+        textEventTargetIframe.contentDocument :
+        null
+      ),
       selectionText: selectionText,
       selectionRect: selectionRect,
       selectionNode: selectionNode
