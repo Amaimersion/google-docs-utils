@@ -3,6 +3,10 @@
     "version": "2.0.0",
     "description": "Utilities for Google Docs.",
     "main": "./src/index.js",
+    "scripts": {
+        "http-server": "http-server . -c-1 --ssl --cert ./cert.pem --key ./key.pem",
+        "create-ssl": "openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem"
+    },
     "homepage": "https://github.com/Amaimersion/google-docs-utils/blob/master/README.md",
     "repository": {
         "type": "git",
@@ -16,6 +20,13 @@
         "url": "https://github.com/Amaimersion"
     },
     "license": "MIT",
+    "devDependencies": {
+        "http-server": "^0.12.3"
+    },
+    "engines": {
+        "node": ">=14.15.1",
+        "yarn": ">=1.22.5"
+    },
     "keywords": [
         "google",
         "google docs",
