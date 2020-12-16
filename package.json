@@ -1,0 +1,33 @@
+{
+    "name": "google-docs-utils",
+    "version": "2.0.0",
+    "description": "Utilities for Google Docs.",
+    "main": "./src/index.js",
+    "homepage": "https://github.com/Amaimersion/google-docs-utils/blob/master/README.md",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Amaimersion/google-docs-utils.git"
+    },
+    "bugs": {
+        "url": "https://github.com/Amaimersion/google-docs-utils/issues"
+    },
+    "author": {
+        "name": "Sergey Kuznetsov",
+        "url": "https://github.com/Amaimersion"
+    },
+    "license": "MIT",
+    "keywords": [
+        "google",
+        "google docs",
+        "google document",
+        "google documents",
+        "google utils",
+        "google docs utils",
+        "google document utils",
+        "google documents utils",
+        "google docs selection",
+        "google docs text selection",
+        "google docs interaction",
+        "google documents interaction"
+    ]
+}
