@@ -10,7 +10,7 @@ function inject() {
     const script = document.createElement('script');
 
     script.type = 'text/javascript';
-    script.src = 'https://127.0.0.1:8080/src/index.js';
+    script.src = 'https://127.0.0.1:8080/dist/iife/index.js';
 
     document.head.appendChild(script);
 }
