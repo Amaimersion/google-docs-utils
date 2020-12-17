@@ -20,3 +20,8 @@ export const textEventTarget = [
     'iframe.docs-texteventtarget-iframe',
     '.docs-texteventtarget-iframe'
 ];
+
+export const kixPage = [
+    '.kix-page',
+    '.docs-page'
+];
