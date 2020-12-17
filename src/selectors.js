@@ -30,3 +30,8 @@ export const kixLine = [
     '.kix-lineview',
     '.kix-paragraphrenderer'
 ];
+
+export const kixLineText = [
+    '.kix-wordhtmlgenerator-word-node',
+    '.kix-lineview-text-block'
+];
