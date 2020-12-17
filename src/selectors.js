@@ -15,3 +15,8 @@ export const docsEditor = [
     '#docs-editor',
     '#docs-editor-container'
 ];
+
+export const textEventTarget = [
+    'iframe.docs-texteventtarget-iframe',
+    '.docs-texteventtarget-iframe'
+];
