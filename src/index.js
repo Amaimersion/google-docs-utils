@@ -3,6 +3,7 @@ import getTextEventTarget from './get-text-event-target';
 import getPagesElements from './get-pages-elements';
 import getLinesElements from './get-lines-elements';
 import getLinesTextElements from './get-lines-text-elements';
+import clearTextContent from './clear-text-content';
 
 
 export {
@@ -10,5 +11,6 @@ export {
     getTextEventTarget,
     getPagesElements,
     getLinesElements,
-    getLinesTextElements
+    getLinesTextElements,
+    clearTextContent
 };
