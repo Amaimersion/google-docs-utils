@@ -25,3 +25,8 @@ export const kixPage = [
     '.kix-page',
     '.docs-page'
 ];
+
+export const kixLine = [
+    '.kix-lineview',
+    '.kix-paragraphrenderer'
+];
