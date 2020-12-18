@@ -39,3 +39,7 @@ export const kixLineText = [
 export const kixWordNone = [
     '.kix-wordhtmlgenerator-word-node'
 ];
+
+export const kixSelectionOverlay = [
+    '.kix-selection-overlay'
+];
