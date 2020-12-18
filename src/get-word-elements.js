@@ -14,10 +14,7 @@ export default function getWordElements() {
 
     for (const line of lines) {
         const node = querySelector(kixWordNone, line);
-
-        if (node) {
-            result.push(node);
-        }
+        result.push(node);
     }
 
     return result;
