@@ -35,3 +35,7 @@ export const kixLineText = [
     '.kix-wordhtmlgenerator-word-node',
     '.kix-lineview-text-block'
 ];
+
+export const kixWordNone = [
+    '.kix-wordhtmlgenerator-word-node'
+];

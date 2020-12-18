@@ -5,6 +5,7 @@ import getLinesElements from './get-lines-elements';
 import getLinesTextElements from './get-lines-text-elements';
 import getLinesText from './get-lines-text';
 import clearTextContent from './clear-text-content';
+import getWordElements from './get-word-elements';
 
 
 export {
@@ -14,5 +15,6 @@ export {
     getLinesElements,
     getLinesTextElements,
     getLinesText,
-    clearTextContent
+    clearTextContent,
+    getWordElements
 };
