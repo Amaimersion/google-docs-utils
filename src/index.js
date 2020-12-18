@@ -7,6 +7,7 @@ import getLinesText from './get-lines-text';
 import clearTextContent from './clear-text-content';
 import getWordElements from './get-word-elements';
 import getSelectionOverlayElements from './get-selection-overlay-elements';
+import getSelection from './get-selection';
 
 
 export {
@@ -18,5 +19,6 @@ export {
     getLinesText,
     clearTextContent,
     getWordElements,
-    getSelectionOverlayElements
+    getSelectionOverlayElements,
+    getSelection
 };
