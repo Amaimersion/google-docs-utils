@@ -9,6 +9,7 @@ import getWordElements from './get-word-elements';
 import getSelectionOverlayElements from './get-selection-overlay-elements';
 import getSelection from './get-selection';
 import getCursorElement from './get-cursor-element';
+import getActiveCursorElement from './get-active-cursor-element';
 
 
 export {
@@ -22,5 +23,6 @@ export {
     getWordElements,
     getSelectionOverlayElements,
     getSelection,
-    getCursorElement
+    getCursorElement,
+    getActiveCursorElement
 };

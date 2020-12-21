@@ -47,3 +47,7 @@ export const kixSelectionOverlay = [
 export const kixCursor = [
     '.kix-cursor'
 ];
+
+export const kixActiveCursor = [
+    '.docs-text-ui-cursor-blink'
+];
