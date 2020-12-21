@@ -51,3 +51,7 @@ export const kixCursor = [
 export const kixActiveCursor = [
     '.docs-text-ui-cursor-blink'
 ];
+
+export const kixCursorCaret = [
+    '.kix-cursor-caret'
+];

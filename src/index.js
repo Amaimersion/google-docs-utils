@@ -10,6 +10,7 @@ import getSelectionOverlayElements from './get-selection-overlay-elements';
 import getSelection from './get-selection';
 import getCursorElement from './get-cursor-element';
 import getActiveCursorElement from './get-active-cursor-element';
+import getCaretElement from './get-caret-element';
 
 
 export {
@@ -24,5 +25,6 @@ export {
     getSelectionOverlayElements,
     getSelection,
     getCursorElement,
-    getActiveCursorElement
+    getActiveCursorElement,
+    getCaretElement
 };
