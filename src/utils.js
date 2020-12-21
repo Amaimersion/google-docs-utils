@@ -55,3 +55,22 @@ export function getCharRect(char, css) {
 
     return rect;
 }
+
+
+/**
+ * @param {DOMRectReadOnly} a
+ * @param {DOMRectReadOnly} b
+ *
+ * @returns {boolean}
+ * Two rects overlaps each other.
+ *
+ * @see https://stackoverflow.com/a/306332/8445442
+ */
+export function isRectsOverlap(a, b) {
+    return (
+        (a.left <= b.right) &&
+        (a.right >= b.left) &&
+        (a.top <= b.bottom) &&
+        (a.bottom >= b.top)
+    );
+}

@@ -11,6 +11,7 @@ import getSelection from './get-selection';
 import getCursorElement from './get-cursor-element';
 import getActiveCursorElement from './get-active-cursor-element';
 import getCaretElement from './get-caret-element';
+import getCaret from './get-caret';
 
 
 export {
@@ -26,5 +27,6 @@ export {
     getSelection,
     getCursorElement,
     getActiveCursorElement,
-    getCaretElement
+    getCaretElement,
+    getCaret
 };
