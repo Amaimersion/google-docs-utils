@@ -43,3 +43,7 @@ export const kixWordNone = [
 export const kixSelectionOverlay = [
     '.kix-selection-overlay'
 ];
+
+export const kixCursor = [
+    '.kix-cursor'
+];

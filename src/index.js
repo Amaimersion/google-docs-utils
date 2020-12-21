@@ -8,6 +8,7 @@ import clearTextContent from './clear-text-content';
 import getWordElements from './get-word-elements';
 import getSelectionOverlayElements from './get-selection-overlay-elements';
 import getSelection from './get-selection';
+import getCursorElement from './get-cursor-element';
 
 
 export {
@@ -20,5 +21,6 @@ export {
     clearTextContent,
     getWordElements,
     getSelectionOverlayElements,
-    getSelection
+    getSelection,
+    getCursorElement
 };
