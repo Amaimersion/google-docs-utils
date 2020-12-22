@@ -6,6 +6,7 @@
     "scripts": {
         "build": "rollup --config rollup.config.js",
         "watch": "rollup --config rollup.config.js --watch",
+        "prepare": "yarn run build",
         "http-server": "http-server . -c-1 --ssl --cert ./cert.pem --key ./key.pem",
         "create-ssl": "openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem"
     },
