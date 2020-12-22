@@ -20,11 +20,13 @@ export default [
                 file: './dist/iife/index.js',
                 format: 'iife',
                 name: GLOBAL_NAME,
+                banner: BANNER,
                 sourcemap: 'inline'
             },
             {
                 file: './dist/cjs/index.js',
-                format: 'cjs'
+                format: 'cjs',
+                banner: BANNER
             }
         ]
     },
