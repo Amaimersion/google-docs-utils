@@ -4,6 +4,7 @@ import getPagesElements from './get-pages-elements';
 import getLinesElements from './get-lines-elements';
 import getLinesTextElements from './get-lines-text-elements';
 import getLinesText from './get-lines-text';
+import getLineText from './get-line-text';
 import clearTextContent from './clear-text-content';
 import getWordElements from './get-word-elements';
 import getSelectionOverlayElements from './get-selection-overlay-elements';
@@ -22,6 +23,7 @@ export {
     getLinesElements,
     getLinesTextElements,
     getLinesText,
+    getLineText,
     clearTextContent,
     getWordElements,
     getSelectionOverlayElements,
