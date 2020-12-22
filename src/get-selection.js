@@ -1,7 +1,7 @@
+import {getCharRect} from './common/utils';
 import getSelectionElements from './get-selection-overlay-elements';
 import getWordElements from './get-word-elements';
 import clearTextContent from './clear-text-content';
-import {getCharRect} from './utils';
 
 
 /**

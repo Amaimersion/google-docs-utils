@@ -1,5 +1,5 @@
-import {docsEditor} from './selectors';
-import {querySelector} from './query-selector';
+import {docsEditor} from './common/selectors';
+import {querySelector} from './common/query-selector';
 
 
 /**

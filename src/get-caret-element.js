@@ -1,5 +1,5 @@
-import {querySelector} from './query-selector';
-import {kixCursorCaret} from './selectors';
+import {querySelector} from './common/query-selector';
+import {kixCursorCaret} from './common/selectors';
 import getCursorElement from './get-cursor-element';
 
 

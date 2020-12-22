@@ -1,6 +1,6 @@
-import {textEventTarget} from './selectors';
-import {querySelector} from './query-selector';
-import {isIframe} from './utils';
+import {textEventTarget} from './common/selectors';
+import {querySelector} from './common/query-selector';
+import {isIframe} from './common/utils';
 
 
 /**

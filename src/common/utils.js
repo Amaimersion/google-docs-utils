@@ -16,7 +16,7 @@ export function isIframe(element) {
 
 /**
  * NOTE: during execution temp element will be added
- * in DOM. That element will be invisible to user,
+ * in the DOM. That element will be invisible to user,
  * and that element will be removed in the end of execution.
  *
  * @param {string} char

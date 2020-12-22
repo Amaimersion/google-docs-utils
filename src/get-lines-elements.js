@@ -1,5 +1,5 @@
-import {kixLine} from './selectors';
-import {querySelectorAll} from './query-selector';
+import {kixLine} from './common/selectors';
+import {querySelectorAll} from './common/query-selector';
 import getPagesElements from './get-pages-elements';
 
 

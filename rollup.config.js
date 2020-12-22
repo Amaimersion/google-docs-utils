@@ -1,5 +1,5 @@
 import {terser} from 'rollup-plugin-terser';
-import {joinText} from './src/utils';
+import {joinText} from './src/common/utils';
 
 
 const BANNER = joinText(

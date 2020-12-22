@@ -1,5 +1,5 @@
-import {querySelector} from './query-selector';
-import {kixActiveCursor} from './selectors';
+import {querySelector} from './common/query-selector';
+import {kixActiveCursor} from './common/selectors';
 import getEditorElement from './get-editor-element';
 
 

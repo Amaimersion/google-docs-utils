@@ -1,5 +1,5 @@
 /**
- * Get HTML element using query selector.
+ * Gets HTML element using `querySelector`.
  *
  * @param {string[]} selectors
  * Array of possible selectors.
@@ -39,7 +39,7 @@ export function querySelector(
 
 
 /**
- * Get all HTML elements using query selector.
+ * Gets all HTML elements using `querySelectorAll`.
  *
  * @param {string[]} selectors
  * Array of possible selectors.

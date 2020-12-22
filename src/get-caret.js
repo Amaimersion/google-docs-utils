@@ -1,6 +1,6 @@
+import {isRectsOverlap, getCharRect} from './common/utils';
 import getCaretElement from './get-caret-element';
 import getWordElements from './get-word-elements';
-import {isRectsOverlap, getCharRect} from './utils';
 
 
 /**

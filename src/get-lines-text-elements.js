@@ -1,5 +1,5 @@
-import {kixLineText} from './selectors';
-import {querySelector} from './query-selector';
+import {kixLineText} from './common/selectors';
+import {querySelector} from './common/query-selector';
 import getLinesElements from './get-lines-elements';
 
 

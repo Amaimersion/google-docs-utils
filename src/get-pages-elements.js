@@ -1,5 +1,5 @@
-import {kixPage} from './selectors';
-import {querySelectorAll} from './query-selector';
+import {kixPage} from './common/selectors';
+import {querySelectorAll} from './common/query-selector';
 import getEditorElement from './get-editor-element';
 
 

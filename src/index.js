@@ -1,3 +1,10 @@
+/**
+ * This file exposes methods that is intended for public usage.
+ *
+ * - order and structure of imports doesn't matter
+ */
+
+
 import getEditorElement from './get-editor-element';
 import getTextEventTarget from './get-text-event-target';
 import getPagesElements from './get-pages-elements';

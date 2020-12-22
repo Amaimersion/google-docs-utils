@@ -1,12 +1,12 @@
 /**
- * Selectors to find element on the page.
+ * Selectors to find element in the page.
  *
  * Use array of strings, not just single string value.
- * It is means there can be multiple selectors for that
+ * It is means there can be multiple selectors for single
  * element, in descending order of priority.
- * For example, if selector № 1 return some result, then
- * that value will be used, otherwise selector № 2 will
- * be used to get element, etc.
+ * For example, if selector № 1 returned some result, then
+ * that result will be used, otherwise selector № 2 will
+ * be used to try to get valid result, etc.
  * If there only one value, then use array with one element.
  */
 
