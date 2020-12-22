@@ -1,8 +1,8 @@
 /**
  * Joins text using separator.
  */
-export function joinText(separator) {
-    return Array.from(arguments).join(separator);
+export function joinText(separator, ...args) {
+    return args.join(separator);
 }
 
 
