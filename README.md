@@ -1,206 +1,400 @@
-# ChromeExtension-GoogleDocsUtil
-When writing a Chrome Extension, in some cases you want to work with Google Docs.
-But working with Google Docs is not easy, it does not follow the normal way of interacting with homepages from a Chrome Extension.
+# google-docs-utils
 
-This googleDocsUtil.js script is made to help interacting with a Google Docs document. It works as a Content Script and should be accessed from another of your Content Scripts.
+Utilities for interaction with Google Docs using JavaScript.
 
 
-# Features
-- Get the text of the Google Docs document
-- Get the caret index in the Google Docs document
-- Get the current word at the caret
-- Get the user selection in the Google Docs document
-- Highlight from/to index in the Google Docs document
-- Remove highlight
-- Interaction with keyboard events
+## Content
+- [Content](#content)
+- [What for?](#what-for)
+- [Installation](#installation)
+  - [Node.js](#nodejs)
+  - [Browser](#browser)
+- [Usage](#usage)
+  - [Node.js](#nodejs-1)
+  - [Browser](#browser-1)
+- [API](#api)
+  - [getEditorElement](#geteditorelement)
+  - [getPagesElements](#getpageselements)
+  - [getLinesElements](#getlineselements)
+  - [getLinesTextElements](#getlinestextelements)
+  - [getLinesText](#getlinestext)
+  - [getLineText](#getlinetext)
+  - [getWordElements](#getwordelements)
+  - [getSelectionOverlayElements](#getselectionoverlayelements)
+  - [getSelection](#getselection)
+  - [getCursorElement](#getcursorelement)
+  - [getActiveCursorElement](#getactivecursorelement)
+  - [getCaretElement](#getcaretelement)
+  - [getCaret](#getcaret)
+  - [getCaretWord](#getcaretword)
+  - [getTextEventTarget](#gettexteventtarget)
+  - [clearTextContent](#cleartextcontent)
+- [Version naming](#version-naming)
+- [Contributing](#contributing)
+- [Project history](#project-history)
+- [License](#license)
 
-# Example
-Please see ![sample-extension](/sample-extension) for a fully working Chrome Extension which can get the text from a Google Doc page.
 
-# Usage
+## What for?
 
-```
-//contentScript.js
+Google Docs uses its own complex logic for displaying, storing and handling of page elements. It is good for ensuring that across many different browsers the editor is working as expected, but it makes hard to interact with document programmatically.
 
-//Get the current state of the Google Docs document. After a change to the google docs document call the getGoogleDocument() again to get the changes.
-var googleDocument = googleDocsUtil.getGoogleDocument();
+Examples:
+- you can't just use `window.getSelection()` to get selected text. Google Docs creates two independent elements: one for text and one for selection overlay. Any events for normal selection will be canceled by Google Docs.
+- you can't just change text of element using `element.textContent = 'newText'`, because Google Docs stores current editor state internally. So, autosaving will be not triggered. Also, on further user typing, previous text will be restored while `newText` will be removed.
+- `element.innerText.length` will give different result than you expect because Google Docs adds special symbols (NBSP, ZWNJ) to display text correctly across different browsers.
 
-//All the text is in the array googleDocument.text
-//NOTICE: if the Google Docs document contains multiple pages, not all the pages may be loaded
-var loadedText = "";
-for(var i= 0; i < googleDocument.text.length; i++)
-{
-   console.log("Text at line " + i + ": " + googleDocument.text[i]);
-}
-
-//The selected text
-console.log("The selected text is: " + googleDocument.selectionText.join(" "));
+Why do you need to handle such nuances by yourself when you can just use already working solutions? So, it is what it for.
 
 
-//Get the word at the caret
-var currentWord = googleDocsUtil.getWordAtCaret(googleDocument);
-console.log("The caret is at index: " + googleDocument.caret.index);
-console.log("The caret is on line: " + googleDocument.caret.line);
-console.log("The caret is at the index on line: " + googleDocument.caret.lineIndex);
-console.log("The caret is at the word: " + currentWord);
+## Installation
 
-//Gets the text from index 10 to 20
-var foundText = googleDocsUtil.getText(10, 20, googleDocument);
+### Node.js
 
-//Higlights the index 10 to 20
-googleDocsUtil.highlight(10, 20, googleDocument);
-
-//Removes the highlight
-//googleDocsUtil.removeHighlightNodes();
-
-```
-
-# Interface
-googleDocsUtil provides the following Interface:
+- with `npm`:
 
 ```
-function getGoogleDocument(); /* Returns a googleDocument object used below*/
-function findWordAtCaret(googleDocument);
-function getText(startIndex, endIndex, googleDocument);
-function highlight(startIndex, endIndex, googleDocument);
-function removeHighlightNodes();
-function cleanDocumentText(text);
+npm install google-docs-utils
 ```
 
-## function getGoogleDocument()
-**Desciption**
+- with `yarn`:
 
-The main call to get all the information about the Google Docs document.
-
-**Arguments**
-
-None
-
-**Returns**
-
-An element containing
 ```
-{
-  text: [] /*An array of strings, each string is a line in the document. Means the number of strings is the number of lines in the document*/
-  caret: {
-    index /* index of the caret in the document */
-    lineIndex /* index of the caret on the current line */
-    line /*the line the caret is on*/
-  },
-  nodes: /* Google Docs have all its text in span elements of class "kix-wordhtmlgenerator-word-node", the nodes is a list of metadata about each node */
-  [{
-    index /* The start index of the node */
-	line /* The line the node is on*/
-	lineIndex /* The start index of the node on the line*/
-	node /* A reference to the "kix-wordhtmlgenerator-word-node" containing the actual text*/
-	lineElement /* A reference to the "kix-lineview" which contains the node element*/
-	text /* The text the node contains */
-  }]
-  selectionText: [] // array of lines (from top to bottom) which contains selected text
-  selectionRect: [] // array of lines (from top to bottom) which contains DOMRect of selected text
-  selectionNode: [] // array of lines (from top to bottom) which contains HTMLElement of selection
-  textEventTarget: (Document | null); // use this for dispatching keyboard events. These events will be handled by Google Docs
-}
+yarn add google-docs-utils
 ```
 
-## function findWordAtCaret(googleDocument)
-**Desciption**
+### Browser
 
-Returns the word the caret is at. If there is no word at the cursor, it will return an empty string.
+Use these CDN links:
 
-**Arguments**
+- for development:
 
-googleDocument: Returned from getGoogleDocument()
+```
+https://unpkg.com/google-docs-utils@latest/dist/iife/index.js
+```
 
-**Returns**
+- for production:
 
-A string of the found word at the cursor
+```
+https://unpkg.com/google-docs-utils@latest/dist/iife/index.min.js
+```
 
-## function getText(startIndex, endIndex, googleDocument)
-**Desciption**
-
-Get the text within from the start index to end index
-
-**Arguments**
-
-startIndex: The start index in the text
-
-endIndex: The end index in the text
-
-googleDocument: The returned object from getGoogleDocument()
-
-**Returns**
-
-A string of the found text
+Then access this library via `GoogleDocsUtils` global variable.
 
 
-## function highlight(startIndex, endIndex, googleDocument)
-**Desciption**
+## Usage
 
-Creates an highlight starting at startIndex and ends at endIndex. If the text changes remove the highlight and set a new highlight
+### Node.js
 
-**Arguments**
+```javascript
+// load all methods
+const GoogleDocsUtils = require('google-docs-utils');
 
-startIndex: The start index in the text
+// using ES6
+import * as GoogleDocsUtils from 'google-docs-utils';
 
-endIndex: The end index in the text
+// load specific methods
+import {getSelection} from 'google-docs-utils';
+```
 
-googleDocument: Returned from getGoogleDocument()
+### Browser
 
-**Returns**
+`GoogleDocsUtils` global variable will be created when you load this library. Access the methods via this variable.
 
-void
+Example:
 
-## function removeHighlightNodes()
-**Desciption**
-Removes all highlights
+```javascript
+GoogleDocsUtils.getSelection();
+```
 
-**Arguments**
+You can load the script using any way you like. For example, you can manually load this library through developer console:
 
-None
+```javascript
+var script = document.createElement('script');
+script.type = 'text/javascript';
+script.src = 'https://unpkg.com/google-docs-utils@latest/dist/iife/index.js';
+document.head.appendChild(script);
+```
 
-**Returns**
 
-void
+## API
 
-## function cleanDocumentText(text)
-**Desciption**
+### getEditorElement
 
-If the text from the document is recived from elsewhere, you can use this method to clean the text of nonsensable characters.
+```typescript
+GoogleDocsUtils.getEditorElement(): HTMLElement;
+```
 
-**Arguments**
+Returns current active editor element. You may consider it as a root element. It contains only editor itself, not control bar and other elements.
 
-text: Text from the Google Docs document recived from elsewhere.
+### getPagesElements
 
-**Returns**
+```typescript
+GoogleDocsUtils.getPagesElements(): HTMLElement[];
+```
 
-The text cleaned of \u200B and non breaking spaces.
+Returns all rendered editor pages.
 
-# Limitations
-It can only get the text of what is loaded in Google Docs.
-When you open a Google Docs document, Google Docs only load the text of first page. The rest of the text is not loaded before the user scrolls down.
+### getLinesElements
 
-# Not implemented
-- Get other peoples caret index in the same document
-- Get other peoples selected text in the same document
+```typescript
+GoogleDocsUtils.getLinesElements(): HTMLElement[];
+```
 
-# MIT License
-Copyright (c) 2017 Dictus ApS
+Returns all lines of all rendered editor pages. Note that it also contains header lines of every page. So, `GoogleDocsUtils.getLinesElements()[0]` results to header line of first page, and `GoogleDocsUtils.getLinesElements()[1]` results to first line of first page.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+### getLinesTextElements
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+```typescript
+GoogleDocsUtils.getLinesTextElements(): HTMLElement[];
+```
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Return all text elements of all rendered editor pages. Note that it also contains header text elements of every page, even if header is empty.
+
+### getLinesText
+
+```typescript
+GoogleDocsUtils.getLinesTextElements(): string[];
+```
+
+Returns text content of every line of all rendered pages. If line is empty, then empty string will be used as a value for that line.
+
+### getLineText
+
+```typescript
+GoogleDocsUtils.getLineText(lineIndex, [startIndex], [endIndex]): string | null;
+```
+
+Returns text of specific line.
+
+**lineIndex**
+
+- required: `true`
+- type: `number`
+
+Index of specific line, which starts from `0`. Note that it also points to header lines. So, for example, `0` points to header line of first page, and `1` points to first line of first page.
+
+If `lineIndex` is greater than total count of all rendered lines, then `null` will be returned instead of `string`.
+
+**startIndex**
+
+- required: `false`
+- type: `number`
+- default: `undefined`
+
+Start index for `substring()`. If not specified, then start of line is assumed.
+
+**endIndex**
+
+- required: `false`
+- type: `number`
+- default: `undefined`
+
+End index for `substring()`. If not specified, then end of line is assumed.
+
+### getWordElements
+
+```typescript
+GoogleDocsUtils.getWordElements(): HTMLElement[];
+```
+
+Return all nodes of all rendered lines which contains actual text of line. There is no point to change text of line through `textContent` or `innerText`, because these changes will be not recognized correctly.
+
+### getSelectionOverlayElements
+
+```typescript
+GoogleDocsUtils.getSelectionOverlayElements(): Array<HTMLElement | null>;
+```
+
+Returns all selection overlay elements of all rendered lines. If there are no selection for some line, then `null` will be used as a value for that line. Don't remove this element manually, because these DOM changes will be not recognized by Google Docs correctly.
+
+### getSelection
+
+```typescript
+GoogleDocsUtils.getSelection(): Array<SelectionData | null>;
+```
+
+Returns data about selection for every rendered line. Note that header line is also included in returned array. If there are no selection in a line, then `null` will be used as a value for that line.
+
+**SelectionData.text**
+
+- type: `string`
+
+Original text of line.
+
+**SelectionData.selectedText**
+
+- type: `string`
+
+Selected text.
+
+**SelectionData.selectionStart**
+
+- type: `number`
+
+Index where selection starts. It can be used for `substring()`.
+
+**SelectionData.selectionEnd**
+
+- type: `number`
+
+Index where selection ends. It can be used for `substring()`.
+
+**SelectionData.textElement**
+
+- type: `HTMLElement`
+
+HTML element which contains actual text.
+
+**SelectionData.selectionElement**
+
+- type: `HTMLElement`
+
+HTML element which contains selection overlay element.
+
+**SelectionData.textRect**
+
+- type: `DOMRectReadOnly`
+
+`DOMRect` of `textElement`.
+
+**SelectionData.selectionRect**
+
+- type: `DOMRectReadOnly`
+
+`DOMRect` of `selectionElement`.
+
+### getCursorElement
+
+```typescript
+GoogleDocsUtils.getCursorElement(): HTMLElement;
+```
+
+Returns cursor element.
+
+### getActiveCursorElement
+
+```typescript
+GoogleDocsUtils.getActiveCursorElement(): HTMLElement | null;
+```
+
+Returns active cursor element. "Active" means page is focused (cursor is blinking). `null` will be returned if cursor is not active.
+
+### getCaretElement
+
+```typescript
+GoogleDocsUtils.getCaretElement(): HTMLElement;
+```
+
+Returns caret element.
+
+### getCaret
+
+```typescript
+GoogleDocsUtils.getCaret(): CaretData;
+```
+
+Returns data about caret.
+
+**CaretData.element**
+
+- type: `HTMLElement`
+
+Caret element.
+
+**CaretData.wordElement**
+
+- type: `HTMLElement`
+
+Element which contains text of line on which caret is placed.
+
+**CaretData.lineIndex**
+
+- type: `number`
+
+Global index of line.
+
+**CaretData.positionIndex**
+
+- type: `number`
+
+Before what letter caret is placed. For example, caret is placed before `w` letter in `one two three` text. `positionIndex` will be equal to `5` in that case.
+
+### getCaretWord
+
+```typescript
+GoogleDocsUtils.getCaretWord(): CaretWordData;
+```
+
+Returns data about word on which caret is currently placed.
+
+**CaretWordData.word**
+
+- type: `string`
+
+Full word on which caret is placed.
+
+**CaretWordData.text**
+
+- type: `string`
+
+Full text of line on which caret is placed.
+
+**CaretWordData.indexStart**
+
+- type: `number`
+
+On which index `word` starts in `text`. Can be used for `substring()`.
+
+**CaretWordData.indexEnd**
+
+- type: `number`
+
+On which index `word` ends in `text`. Can be used for `substring()`.
+
+### getTextEventTarget
+
+```typescript
+GoogleDocsUtils.getTextEventTarget(): HTMLElement | Document;
+```
+
+To this element you can dispatch keyboard events. You can't just send keyboard events to current `document`, because Google Docs uses separate element to handle keyboard events.
+
+### clearTextContent
+
+```typescript
+GoogleDocsUtils.getTextEventTarget(text): string;
+```
+
+Clears text that was extracted using `textContent` or `innerText`. It is important to handle extracted text, because it may contain special invisible symbols like `ZWNJ` or `NBSP` - these symbols will lead to unexpected result.
+
+**text**
+
+- required: `true`
+- type: `string`
+
+Raw text of line that was extracted using `textContent` or `innerText`.
+
+
+## Version naming
+
+This project uses following structure for version naming: `<MAJOR RELEASE>.<BREAKING CHANGES>.<NON BREAKING CHANGES>`.
+
+
+## Contributing
+
+Contributions of all sizes are welcome. Feel free!
+
+Use [issues](https://github.com/Amaimersion/google-docs-utils/issues/new) to report a bug, request a feature or ask a question.
+
+Also, consider making a [pull request](https://github.com/Amaimersion/google-docs-utils/compare) to add your own implementation of missing functionality. Big thanks for that!
+
+
+## Project history
+
+Initialiy it was a fork of [JensPLarsen/ChromeExtension-GoogleDocsUtil](https://github.com/JensPLarsen/ChromeExtension-GoogleDocsUtil). Starting from 2.0.0 version the project was completely  rewritten, but core concepts were keeped.
+
+
+## License
+
+[MIT](https://github.com/Amaimersion/google-docs-utils/blob/master/LICENSE).

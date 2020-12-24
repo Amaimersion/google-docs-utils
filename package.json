@@ -1,8 +1,59 @@
 {
-  "name": "google-docs-utils",
-  "version": "1.1.0",
-  "main": "googleDocsUtil.js",
-  "repository": "https://github.com/Amaimersion/ChromeExtension-GoogleDocsUtil.git",
-  "author": "Sergey Kuznetsov <amatsukine@gmail.com>",
-  "license": "MIT"
+    "name": "google-docs-utils",
+    "version": "2.0.0",
+    "description": "Utilities for interaction with Google Docs.",
+    "main": "index.js",
+    "scripts": {
+        "build": "rollup --config rollup.config.js",
+        "watch": "rollup --config rollup.config.js --watch",
+        "prepare": "yarn run build",
+        "http-server": "http-server . -c-1 --ssl --cert ./cert.pem --key ./key.pem",
+        "create-ssl": "openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem"
+    },
+    "homepage": "https://github.com/Amaimersion/google-docs-utils/blob/master/README.md",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Amaimersion/google-docs-utils.git"
+    },
+    "bugs": {
+        "url": "https://github.com/Amaimersion/google-docs-utils/issues"
+    },
+    "author": {
+        "name": "Sergey Kuznetsov",
+        "url": "https://github.com/Amaimersion"
+    },
+    "license": "MIT",
+    "devDependencies": {
+        "http-server": "^0.12.3",
+        "rollup": "^2.35.1",
+        "rollup-plugin-terser": "^7.0.2"
+    },
+    "engines": {
+        "node": ">=14.15.1"
+    },
+    "devEngines": {
+        "node": ">=14.15.1",
+        "yarn": ">=1.22.5"
+    },
+    "files": [
+        "LICENSE",
+        "README.md",
+        "index.js",
+        "dist/"
+    ],
+    "keywords": [
+        "google-docs-utils",
+        "google",
+        "google docs",
+        "google document",
+        "google documents",
+        "google utils",
+        "google docs utils",
+        "google document utils",
+        "google documents utils",
+        "google docs selection",
+        "google docs text selection",
+        "google docs interaction",
+        "google documents interaction"
+    ]
 }
