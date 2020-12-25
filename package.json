@@ -3,6 +3,7 @@
     "version": "2.0.0",
     "description": "Utilities for interaction with Google Docs.",
     "main": "index.js",
+    "types": "./types/index.d.ts",
     "scripts": {
         "build": "rollup --config rollup.config.js",
         "watch": "rollup --config rollup.config.js --watch",
@@ -39,7 +40,8 @@
         "LICENSE",
         "README.md",
         "index.js",
-        "dist/"
+        "dist/",
+        "types/"
     ],
     "keywords": [
         "google-docs-utils",

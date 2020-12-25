@@ -1,3 +1,8 @@
+# 2.1.0
+
+- Add type definitions.
+
+
 # 2.0.0 (December 24, 2020)
 
 Complete refactoring of old code. Now this library can be used as both IIFE and CJS. Starting from `2.0.0` version the code have nothing common with `1.x.x` versions, excepts some core concepts.
