@@ -1,6 +1,7 @@
 # 2.1.0
 
 - Add type definitions.
+- Add `ESlint`.
 
 
 # 2.0.0 (December 24, 2020)
