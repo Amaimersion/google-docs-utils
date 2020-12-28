@@ -42,6 +42,7 @@ Utilities for interaction with Google Docs using JavaScript.
     - [ArrowDown](#arrowdown)
   - [typeText](#typetext)
   - [isTextSelected](#istextselected)
+  - [deleteSelection](#deleteselection)
 - [Version naming](#version-naming)
 - [Contributing](#contributing)
 - [Project history](#project-history)
@@ -489,6 +490,14 @@ GoogleDocsUtils.isTextSelected(): boolean;
 ```
 
 Returns status that indicates if text selection is exists on either single or multiple lines.
+
+### deleteSelection
+
+```typescript
+GoogleDocsUtils.deleteSelection(): boolean;
+```
+
+Removes current selection. Returns `true` if selection was removed, otherwise returns `false` if nothing to remove because nothing is selected.
 
 
 ## Version naming

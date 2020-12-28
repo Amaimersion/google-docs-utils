@@ -93,4 +93,6 @@ export function typeText(text: string): void;
 
 export function isTextSelected(): boolean;
 
+export function deleteSelection(): boolean;
+
 //#endregion

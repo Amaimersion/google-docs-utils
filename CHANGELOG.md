@@ -3,6 +3,7 @@
 - Add `pressOn` namespace which includes `Character`, `Space`, `Delete`, `Backspace`, `Enter`, `Tab`, `ArrowLeft`, `ArrowRight`, `ArrowUp`, `ArrowDown` methods. Using these methods you can imitate physical key press.
 - Add `typeText`: type text at current caret position.
 - Add `isTextSelected`: indicates that text is selected (at least on one line).
+- Add `deleteSelection`: remove current selection.
 - Add type definitions.
 - Add `ESlint`.
 
