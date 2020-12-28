@@ -43,6 +43,7 @@ Utilities for interaction with Google Docs using JavaScript.
     - [Undo](#undo)
     - [Redo](#redo)
     - [SelectAll](#selectall)
+    - [PrintDialog](#printdialog)
   - [typeText](#typetext)
   - [isTextSelected](#istextselected)
   - [deleteSelection](#deleteselection)
@@ -487,6 +488,12 @@ GoogleDocsUtils.pressOn.Redo(): void;
 
 ```typescript
 GoogleDocsUtils.pressOn.SelectAll(): void;
+```
+
+#### PrintDialog
+
+```typescript
+GoogleDocsUtils.pressOn.PrintDialog(): void;
 ```
 
 ### typeText

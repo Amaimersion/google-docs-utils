@@ -89,7 +89,8 @@ export const pressOn: {
     ArrowDown: () => void,
     Undo: () => void,
     Redo: () => void,
-    SelectAll: () => void
+    SelectAll: () => void,
+    PrintDialog: () => void
 };
 
 export function typeText(text: string): void;

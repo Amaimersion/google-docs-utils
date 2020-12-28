@@ -180,3 +180,20 @@ export function SelectAll() {
         }
     );
 }
+
+
+/**
+ * Imitates physical press on "Print" button
+ * (print dialog, not print of character).
+ */
+export function PrintDialog() {
+    keydown(
+        getTextEventTarget(),
+        'p',
+        null,
+        null,
+        {
+            ctrlKey: true
+        }
+    );
+}
