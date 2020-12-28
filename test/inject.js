@@ -6,7 +6,7 @@
  * - if you want to refresh script content,
  * just call this function again.
  */
-function inject() {
+export function inject() {
     const script = document.createElement('script');
 
     script.type = 'text/javascript';
