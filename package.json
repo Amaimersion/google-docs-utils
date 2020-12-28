@@ -1,12 +1,16 @@
 {
     "name": "google-docs-utils",
-    "version": "2.0.0",
+    "version": "2.1.0",
     "description": "Utilities for interaction with Google Docs.",
     "main": "index.js",
+    "types": "./types/index.d.ts",
     "scripts": {
         "build": "rollup --config rollup.config.js",
         "watch": "rollup --config rollup.config.js --watch",
         "prepare": "yarn run build",
+        "prepublishOnly": "yarn run lint",
+        "lint": "eslint index.js './src/**/*.js'",
+        "lint-tests": "eslint './test/**/*.js'",
         "http-server": "http-server . -c-1 --ssl --cert ./cert.pem --key ./key.pem",
         "create-ssl": "openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem"
     },
@@ -24,6 +28,8 @@
     },
     "license": "MIT",
     "devDependencies": {
+        "babel-eslint": "^10.1.0",
+        "eslint": "^7.16.0",
         "http-server": "^0.12.3",
         "rollup": "^2.35.1",
         "rollup-plugin-terser": "^7.0.2"
@@ -39,7 +45,8 @@
         "LICENSE",
         "README.md",
         "index.js",
-        "dist/"
+        "dist/",
+        "types/"
     ],
     "keywords": [
         "google-docs-utils",

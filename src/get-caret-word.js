@@ -112,7 +112,7 @@ function getBoundaryIndex(startIndex, text, toLeft) {
         charIsOutOfWord(character) &&
         !isEnd(boundaryIndex)
     ) {
-        boundaryIndex = move(boundaryIndex)
+        boundaryIndex = move(boundaryIndex);
         character = text[boundaryIndex];
 
         // there is no word boundary after shift by one,
@@ -126,7 +126,7 @@ function getBoundaryIndex(startIndex, text, toLeft) {
         !charIsOutOfWord(character) &&
         !isEnd(boundaryIndex)
     ) {
-        boundaryIndex = move(boundaryIndex)
+        boundaryIndex = move(boundaryIndex);
         character = text[boundaryIndex];
     }
 

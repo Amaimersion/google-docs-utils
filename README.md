@@ -29,6 +29,23 @@ Utilities for interaction with Google Docs using JavaScript.
   - [getCaretWord](#getcaretword)
   - [getTextEventTarget](#gettexteventtarget)
   - [clearTextContent](#cleartextcontent)
+  - [pressOn](#presson)
+    - [Character](#character)
+    - [Space](#space)
+    - [Delete](#delete)
+    - [Backspace](#backspace)
+    - [Enter](#enter)
+    - [Tab](#tab)
+    - [ArrowLeft](#arrowleft)
+    - [ArrowRight](#arrowright)
+    - [ArrowUp](#arrowup)
+    - [ArrowDown](#arrowdown)
+    - [Undo](#undo)
+    - [Redo](#redo)
+    - [SelectAll](#selectall)
+  - [typeText](#typetext)
+  - [isTextSelected](#istextselected)
+  - [deleteSelection](#deleteselection)
 - [Version naming](#version-naming)
 - [Contributing](#contributing)
 - [Project history](#project-history)
@@ -374,6 +391,134 @@ Clears text that was extracted using `textContent` or `innerText`. It is importa
 - type: `string`
 
 Raw text of line that was extracted using `textContent` or `innerText`.
+
+### pressOn
+
+This namespace provides methods to imitate physical single key press. You can use this to interact with current editor content: clear current selection using `Delete` key, delete current character using `Backspace` key, move on new line using `Enter` key, etc.
+
+If this default typing system not suits for you, you still can implement your own typing system - just send keyboard events to [getTextEventTarget](#gettexteventtarget).
+
+This namespace provides following methods:
+
+#### Character
+
+```typescript
+GoogleDocsUtils.pressOn.Character(char): void;
+```
+
+**char**
+
+- required: `true`
+- type: `string`
+
+Single character to press on. Case sensitive.
+
+#### Space
+
+```typescript
+GoogleDocsUtils.pressOn.Space(): void;
+```
+
+#### Delete
+
+```typescript
+GoogleDocsUtils.pressOn.Delete(): void;
+```
+
+Difference between [Delete](#delete) and [Backspace](#backspace) is matters.
+
+#### Backspace
+
+```typescript
+GoogleDocsUtils.pressOn.Backspace(): void;
+```
+
+Difference between [Delete](#delete) and [Backspace](#backspace) is matters.
+
+#### Enter
+
+```typescript
+GoogleDocsUtils.pressOn.Enter(): void;
+```
+
+#### Tab
+
+```typescript
+GoogleDocsUtils.pressOn.Tab(): void;
+```
+
+#### ArrowLeft
+
+```typescript
+GoogleDocsUtils.pressOn.ArrowLeft(): void;
+```
+
+#### ArrowRight
+
+```typescript
+GoogleDocsUtils.pressOn.ArrowRight(): void;
+```
+
+#### ArrowUp
+
+```typescript
+GoogleDocsUtils.pressOn.ArrowUp(): void;
+```
+
+#### ArrowDown
+
+```typescript
+GoogleDocsUtils.pressOn.ArrowDown(): void;
+```
+
+#### Undo
+
+```typescript
+GoogleDocsUtils.pressOn.Undo(): void;
+```
+
+#### Redo
+
+```typescript
+GoogleDocsUtils.pressOn.Redo(): void;
+```
+
+#### SelectAll
+
+```typescript
+GoogleDocsUtils.pressOn.SelectAll(): void;
+```
+
+### typeText
+
+```typescript
+GoogleDocsUtils.typeText(text): void;
+```
+
+Types provided text character by character at current caret position. Imitates physical key press events. Can take a long time to type long text. Uses default [pressOn](#presson).
+
+**text**
+
+- required: `true`
+- type: `string`
+
+Text to type.
+
+### isTextSelected
+
+```typescript
+GoogleDocsUtils.isTextSelected(): boolean;
+```
+
+Returns status that indicates if text selection is exists on either single or multiple lines.
+
+### deleteSelection
+
+```typescript
+GoogleDocsUtils.deleteSelection(): boolean;
+```
+
+Removes current selection. Returns `true` if selection was removed, otherwise returns `false` if nothing to remove because nothing is selected.
 
 
 ## Version naming

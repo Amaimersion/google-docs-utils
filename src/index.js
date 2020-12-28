@@ -21,6 +21,10 @@ import getActiveCursorElement from './get-active-cursor-element';
 import getCaretElement from './get-caret-element';
 import getCaret from './get-caret';
 import getCaretWord from './get-caret-word';
+import * as pressOn from './press-on';
+import typeText from './type-text';
+import isTextSelected from './is-text-selected';
+import deleteSelection from './delete-selection';
 
 
 export {
@@ -39,5 +43,9 @@ export {
     getActiveCursorElement,
     getCaretElement,
     getCaret,
-    getCaretWord
+    getCaretWord,
+    pressOn,
+    typeText,
+    isTextSelected,
+    deleteSelection
 };

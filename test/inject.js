@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+
+
 /**
  * Call this function in developer console of page to
  * inject local package into Google Docs page.
