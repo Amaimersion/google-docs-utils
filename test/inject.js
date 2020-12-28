@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+
+
 /**
  * Call this function in developer console of page to
  * inject local package into Google Docs page.
@@ -6,7 +9,7 @@
  * - if you want to refresh script content,
  * just call this function again.
  */
-export function inject() {
+function inject() {
     const script = document.createElement('script');
 
     script.type = 'text/javascript';
