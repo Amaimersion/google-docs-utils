@@ -22,6 +22,7 @@ import getCaretElement from './get-caret-element';
 import getCaret from './get-caret';
 import getCaretWord from './get-caret-word';
 import * as pressOn from './press-on';
+import typeText from './type-text';
 
 
 export {
@@ -41,5 +42,6 @@ export {
     getCaretElement,
     getCaret,
     getCaretWord,
-    pressOn
+    pressOn,
+    typeText
 };

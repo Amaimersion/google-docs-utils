@@ -89,4 +89,6 @@ export const pressOn: {
     ArrowDown: () => void
 };
 
+export function typeText(text: string): void;
+
 //#endregion

@@ -40,6 +40,7 @@ Utilities for interaction with Google Docs using JavaScript.
     - [ArrowRight](#arrowright)
     - [ArrowUp](#arrowup)
     - [ArrowDown](#arrowdown)
+  - [typeText](#typetext)
 - [Version naming](#version-naming)
 - [Contributing](#contributing)
 - [Project history](#project-history)
@@ -464,6 +465,21 @@ GoogleDocsUtils.pressOn.ArrowUp(): void;
 ```typescript
 GoogleDocsUtils.pressOn.ArrowDown(): void;
 ```
+
+### typeText
+
+```typescript
+GoogleDocsUtils.typeText(text): string;
+```
+
+Types provided text character by character at current caret position. Imitates physical key press events. Can take a long time to type long text. Uses default [pressOn](#presson).
+
+**text**
+
+- required: `true`
+- type: `string`
+
+Text to type.
 
 
 ## Version naming
