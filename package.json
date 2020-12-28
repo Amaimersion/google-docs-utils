@@ -10,6 +10,7 @@
         "prepare": "yarn run build",
         "prepublishOnly": "yarn run lint",
         "lint": "eslint index.js ./src/**/*.js",
+        "lint-tests": "eslint ./test/**/*.js",
         "http-server": "http-server . -c-1 --ssl --cert ./cert.pem --key ./key.pem",
         "create-ssl": "openssl req -newkey rsa:2048 -new -nodes -x509 -days 3650 -keyout key.pem -out cert.pem"
     },
