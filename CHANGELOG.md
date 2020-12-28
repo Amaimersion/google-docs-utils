@@ -1,5 +1,6 @@
 # 2.1.0
 
+- Add `pressOn` namespace which includes `Character`, `Space`, `Delete`, `Backspace`, `Enter`, `Tab`, `ArrowLeft`, `ArrowRight`, `ArrowUp`, `ArrowDown` methods. Using these methods you can imitate physical key press.
 - Add type definitions.
 - Add `ESlint`.
 

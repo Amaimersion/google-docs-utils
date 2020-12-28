@@ -76,4 +76,17 @@ export function getCaret(): GetCaretResult | null;
 
 export function getCaretWord(): GetCaretWordResult | null;
 
+export const pressOn: {
+    Character: (char: string) => void,
+    Space: () => void,
+    Delete: () => void,
+    Backspace: () => void,
+    Enter: () => void,
+    Tab: () => void,
+    ArrowLeft: () => void,
+    ArrowRight: () => void,
+    ArrowUp: () => void,
+    ArrowDown: () => void
+};
+
 //#endregion

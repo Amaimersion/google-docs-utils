@@ -21,6 +21,7 @@ import getActiveCursorElement from './get-active-cursor-element';
 import getCaretElement from './get-caret-element';
 import getCaret from './get-caret';
 import getCaretWord from './get-caret-word';
+import * as pressOn from './press-on';
 
 
 export {
@@ -39,5 +40,6 @@ export {
     getActiveCursorElement,
     getCaretElement,
     getCaret,
-    getCaretWord
+    getCaretWord,
+    pressOn
 };
