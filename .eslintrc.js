@@ -73,8 +73,10 @@ module.exports = {
         'wrap-iife': ERROR,
         'no-label-var': ERROR,
         'no-shadow': ERROR,
-        'no-undefined': ERROR,
-        'no-use-before-define': ERROR,
+        'no-use-before-define': [
+            ERROR,
+            'nofunc'
+        ],
         'camelcase': ERROR,
         'comma-spacing': ERROR,
         'consistent-this': ERROR,
