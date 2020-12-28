@@ -470,7 +470,7 @@ GoogleDocsUtils.pressOn.ArrowDown(): void;
 ### typeText
 
 ```typescript
-GoogleDocsUtils.typeText(text): string;
+GoogleDocsUtils.typeText(text): void;
 ```
 
 Types provided text character by character at current caret position. Imitates physical key press events. Can take a long time to type long text. Uses default [pressOn](#presson).
