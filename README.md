@@ -41,6 +41,7 @@ Utilities for interaction with Google Docs using JavaScript.
     - [ArrowUp](#arrowup)
     - [ArrowDown](#arrowdown)
   - [typeText](#typetext)
+  - [isTextSelected](#istextselected)
 - [Version naming](#version-naming)
 - [Contributing](#contributing)
 - [Project history](#project-history)
@@ -480,6 +481,14 @@ Types provided text character by character at current caret position. Imitates p
 - type: `string`
 
 Text to type.
+
+### isTextSelected
+
+```typescript
+GoogleDocsUtils.isTextSelected(): boolean;
+```
+
+Returns status that indicates if text selection is exists on either single or multiple lines.
 
 
 ## Version naming

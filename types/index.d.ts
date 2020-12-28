@@ -91,4 +91,6 @@ export const pressOn: {
 
 export function typeText(text: string): void;
 
+export function isTextSelected(): boolean;
+
 //#endregion
