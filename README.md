@@ -40,6 +40,9 @@ Utilities for interaction with Google Docs using JavaScript.
     - [ArrowRight](#arrowright)
     - [ArrowUp](#arrowup)
     - [ArrowDown](#arrowdown)
+    - [Undo](#undo)
+    - [Redo](#redo)
+    - [SelectAll](#selectall)
   - [typeText](#typetext)
   - [isTextSelected](#istextselected)
   - [deleteSelection](#deleteselection)
@@ -466,6 +469,24 @@ GoogleDocsUtils.pressOn.ArrowUp(): void;
 
 ```typescript
 GoogleDocsUtils.pressOn.ArrowDown(): void;
+```
+
+#### Undo
+
+```typescript
+GoogleDocsUtils.pressOn.Undo(): void;
+```
+
+#### Redo
+
+```typescript
+GoogleDocsUtils.pressOn.Redo(): void;
+```
+
+#### SelectAll
+
+```typescript
+GoogleDocsUtils.pressOn.SelectAll(): void;
 ```
 
 ### typeText

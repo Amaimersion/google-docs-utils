@@ -1,6 +1,6 @@
 # 2.1.0
 
-- Add `pressOn` namespace which includes `Character`, `Space`, `Delete`, `Backspace`, `Enter`, `Tab`, `ArrowLeft`, `ArrowRight`, `ArrowUp`, `ArrowDown` methods. Using these methods you can imitate physical key press.
+- Add `pressOn` namespace which includes `Character`, `Space`, `Delete`, `Backspace`, `Enter`, `Tab`, `ArrowLeft`, `ArrowRight`, `ArrowUp`, `ArrowDown`, `Undo`, `Redo`, `SelectAll` methods. Using these methods you can imitate physical key presses.
 - Add `typeText`: type text at current caret position.
 - Add `isTextSelected`: indicates that text is selected (at least on one line).
 - Add `deleteSelection`: remove current selection.

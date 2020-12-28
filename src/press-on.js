@@ -132,3 +132,51 @@ export function ArrowDown() {
         40
     );
 }
+
+
+/**
+ * Imitates physical press on "Undo" button.
+ */
+export function Undo() {
+    keydown(
+        getTextEventTarget(),
+        'z',
+        null,
+        null,
+        {
+            ctrlKey: true
+        }
+    );
+}
+
+
+/**
+ * Imitates physical press on "Redo" button.
+ */
+export function Redo() {
+    keydown(
+        getTextEventTarget(),
+        'y',
+        null,
+        null,
+        {
+            ctrlKey: true
+        }
+    );
+}
+
+
+/**
+ * Imitates physical press on "Select all" button.
+ */
+export function SelectAll() {
+    keydown(
+        getTextEventTarget(),
+        'a',
+        null,
+        null,
+        {
+            ctrlKey: true
+        }
+    );
+}
