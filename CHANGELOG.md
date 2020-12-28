@@ -1,3 +1,8 @@
+# 2.1.1 (December 29, 2020)
+
+- Add `pressOn.PrintDialog`: call print dialog.
+
+
 # 2.1.0 (December 28, 2020)
 
 - Add `pressOn` namespace which includes `Character`, `Space`, `Delete`, `Backspace`, `Enter`, `Tab`, `ArrowLeft`, `ArrowRight`, `ArrowUp`, `ArrowDown`, `Undo`, `Redo`, `SelectAll` methods. Using these methods you can imitate physical key presses.
