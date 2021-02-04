@@ -1,5 +1,5 @@
 import {kixWordNone} from './common/selectors';
-import {querySelector} from './common/query-selector';
+import {querySelectorAll} from './common/query-selector';
 import getLinesElements from './get-lines-elements';
 
 
@@ -13,8 +13,8 @@ export default function getWordElements() {
     const result = [];
 
     for (const line of lines) {
-        const node = querySelector(kixWordNone, line);
-        result.push(node);
+        const nodes = querySelectorAll(kixWordNone, line);
+        result.push(...nodes);
     }
 
     return result;
