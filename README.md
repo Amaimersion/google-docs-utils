@@ -218,6 +218,8 @@ GoogleDocsUtils.getWordElements(): HTMLElement[];
 
 Return all nodes of all rendered lines which contains actual text of line. There is no point to change text of line through `textContent` or `innerText`, because these changes will be not recognized correctly.
 
+If text of single line contains various formatting (font, etc.), then it will be splitted into several nodes. For example, "some [Arial font] text [Roboto font]" will be splitted into two nodes, and "some text [Arial font]" will be represented as one node. So, length of [getLinesElements()](#getlineselements) not always equals to length of [getWordElements()](#getWordElements).
+
 ### getSelectionOverlayElements
 
 ```typescript
