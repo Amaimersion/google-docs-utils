@@ -1,7 +1,7 @@
 # 2.2.0
 
 - `getWordElements()`: fixed a bug when text of a single line with different formatting not handled correctly. **BREAKING CHANGES:** length of returned array may be not equal to length of array from `getLinesElements()`. [#4](https://github.com/Amaimersion/google-docs-utils/issues/4)
-
+- `getLinesTextElements()`, `getLinesText()`: fixed a bug when text of a single line with different formatting not handled correctly.
 
 # 2.1.1 (December 29, 2020)
 
