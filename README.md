@@ -172,7 +172,7 @@ Return all text elements of all rendered editor pages. Note that it also contain
 ### getLinesText
 
 ```typescript
-GoogleDocsUtils.getLinesTextElements(): string[];
+GoogleDocsUtils.getLinesText(): string[];
 ```
 
 Returns text content of every line of all rendered pages. If line is empty, then empty string will be used as a value for that line.
@@ -383,7 +383,7 @@ To this element you can dispatch keyboard events. You can't just send keyboard e
 ### clearTextContent
 
 ```typescript
-GoogleDocsUtils.getTextEventTarget(text): string;
+GoogleDocsUtils.clearTextContent(text): string;
 ```
 
 Clears text that was extracted using `textContent` or `innerText`. It is important to handle extracted text, because it may contain special invisible symbols like `ZWNJ` or `NBSP` - these symbols will lead to unexpected result.
