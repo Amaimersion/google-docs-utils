@@ -167,7 +167,7 @@ Returns all lines of all rendered editor pages. Note that it also contains heade
 GoogleDocsUtils.getLinesTextElements(): HTMLElement[];
 ```
 
-Return all text elements of all rendered editor pages. Note that it also contains header text elements of every page, even if header is empty.
+Returns all text elements of all rendered editor pages. Note that it also contains header text elements of every page, even if header is empty.
 
 ### getLinesText
 
