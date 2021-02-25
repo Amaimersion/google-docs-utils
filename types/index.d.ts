@@ -60,7 +60,7 @@ export function getLineText(
 
 export function clearTextContent(textContent: string): string;
 
-export function getWordElements(): QuerySelectorAllResult;
+export function getWordElements(): QuerySelectorAllResult[];
 
 export function getSelectionOverlayElements(): QuerySelectorAllResult;
 

@@ -29,26 +29,30 @@ export default function getCaret() {
         positionIndex: null
     };
 
-    for (let i = 0; i !== wordElements.length; i++) {
-        const wordElement = wordElements[i];
-        const wordRect = wordElement.getBoundingClientRect();
-        const isOverlap = isRectsOverlap(caretRect, wordRect);
+    for (let lineIndex = 0; lineIndex !== wordElements.length; lineIndex++) {
+        const line = wordElements[lineIndex];
 
-        if (!isOverlap) {
-            continue;
+        for (let wordIndex = 0; wordIndex !== line.length; wordIndex++) {
+            const wordElement = line[wordIndex];
+            const wordRect = wordElement.getBoundingClientRect();
+            const isOverlap = isRectsOverlap(caretRect, wordRect);
+
+            if (!isOverlap) {
+                continue;
+            }
+
+            result.element = caretElement;
+            result.wordElement = wordElement;
+            result.lineIndex = lineIndex;
+            result.positionIndex = calculatePositionIndex(
+                wordRect,
+                caretRect,
+                wordElement.textContent,
+                wordElement.style.cssText
+            );
+
+            break;
         }
-
-        result.element = caretElement;
-        result.wordElement = wordElement;
-        result.lineIndex = i;
-        result.positionIndex = calculatePositionIndex(
-            wordRect,
-            caretRect,
-            wordElement.textContent,
-            wordElement.style.cssText
-        );
-
-        break;
     }
 
     return result;

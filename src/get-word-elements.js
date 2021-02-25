@@ -4,8 +4,9 @@ import getLinesElements from './get-lines-elements';
 
 
 /**
- * @returns {HTMLElement[]}
- * Word nodes of each line.
+ * @returns {Array<HTMLElement[]>}
+ * Each element is a line, each elements of that
+ * line element is a word nodes of that line.
  * These nodes contains actual text of line.
  *
  * NOTE:
@@ -13,8 +14,7 @@ import getLinesElements from './get-lines-elements';
  * (font, etc.), then it will be splitted into several nodes.
  * For example, "some [Arial font] text [Roboto font]" will be
  * splitted into two nodes, and "some text [Arial font]" will be
- * represented as one node. So, length of `getLinesElements()`
- * not always equals to length of `getWordElements()`.
+ * represented as one node.
  */
 export default function getWordElements() {
     const lines = getLinesElements();
@@ -22,7 +22,7 @@ export default function getWordElements() {
 
     for (const line of lines) {
         const nodes = querySelectorAll(kixWordNone, line);
-        result.push(...nodes);
+        result.push(nodes);
     }
 
     return result;

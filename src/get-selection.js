@@ -30,47 +30,56 @@ export default function getSelection() {
 
     for (let i = 0; i !== count; i++) {
         const selectionElement = selectionElements[i];
-        const wordElement = wordElements[i];
 
-        if (!selectionElement || !wordElement) {
+        if (!selectionElement) {
             result.push(emptyValue);
 
             continue;
         }
 
-        const originalText = clearTextContent(wordElement.textContent);
-        const textCSS = wordElement.style.cssText;
-        const wordRect = wordElement.getBoundingClientRect();
-        const selectionRect = selectionElement.getBoundingClientRect();
-        const selectionIndexes = calculateSelectionIndexes(
-            originalText,
-            textCSS,
-            wordRect,
-            selectionRect
-        );
-        const notSelected = (!selectionIndexes);
+        const line = wordElements[i];
 
-        if (notSelected) {
-            result.push(emptyValue);
+        for (const wordElement of line) {
+            if (!wordElement) {
+                result.push(emptyValue);
 
-            continue;
+                continue;
+            }
+
+            const originalText = clearTextContent(wordElement.textContent);
+            const textCSS = wordElement.style.cssText;
+            const wordRect = wordElement.getBoundingClientRect();
+            const selectionRect = selectionElement.getBoundingClientRect();
+            const selectionIndexes = calculateSelectionIndexes(
+                originalText,
+                textCSS,
+                wordRect,
+                selectionRect
+            );
+            const notSelected = (!selectionIndexes);
+
+            if (notSelected) {
+                result.push(emptyValue);
+
+                continue;
+            }
+
+            const selectedText = originalText.substring(
+                selectionIndexes.start,
+                selectionIndexes.end
+            );
+
+            result.push({
+                text: originalText,
+                selectedText: selectedText,
+                selectionStart: selectionIndexes.start,
+                selectionEnd: selectionIndexes.end,
+                textRect: wordRect,
+                selectionRect: selectionRect,
+                textElement: wordElement,
+                selectionElement: selectionElement
+            });
         }
-
-        const selectedText = originalText.substring(
-            selectionIndexes.start,
-            selectionIndexes.end
-        );
-
-        result.push({
-            text: originalText,
-            selectedText: selectedText,
-            selectionStart: selectionIndexes.start,
-            selectionEnd: selectionIndexes.end,
-            textRect: wordRect,
-            selectionRect: selectionRect,
-            textElement: wordElement,
-            selectionElement: selectionElement
-        });
     }
 
     return result;
