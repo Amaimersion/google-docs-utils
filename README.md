@@ -216,7 +216,7 @@ End index for `substring()`. If not specified, then end of line is assumed.
 GoogleDocsUtils.getWordElements(): Array<HTMLElement[]>;
 ```
 
-Return all nodes of all rendered lines which contains actual text of line. There is no point to change text of line through `textContent` or `innerText`, because these changes will be not recognized correctly.
+Returns all nodes of all rendered lines which contains actual text of line. There is no point to change text of line through `textContent` or `innerText`, because these changes will be not recognized correctly.
 
 `[]` - represents line, `[][]` - represents all word nodes of that line.
 
