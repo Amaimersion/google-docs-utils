@@ -25,7 +25,7 @@ interface GetCaretResult {
     element: HTMLElement;
     wordElement: HTMLElement;
     lineIndex: number;
-    positionIndex: number;
+    positionIndexRelativeToWord: number;
 }
 
 interface GetCaretWordResult {

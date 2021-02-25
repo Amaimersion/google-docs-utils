@@ -26,7 +26,7 @@ export default function getCaret() {
         element: null,
         wordElement: null,
         lineIndex: null,
-        positionIndex: null
+        positionIndexRelativeToWord: null
     };
 
     for (let lineIndex = 0; lineIndex !== wordElements.length; lineIndex++) {
@@ -44,7 +44,7 @@ export default function getCaret() {
             result.element = caretElement;
             result.wordElement = wordElement;
             result.lineIndex = lineIndex;
-            result.positionIndex = calculatePositionIndex(
+            result.positionIndexRelativeToWord = calculatePositionIndex(
                 wordRect,
                 caretRect,
                 wordElement.textContent,
