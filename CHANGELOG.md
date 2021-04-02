@@ -1,4 +1,4 @@
-# 2.1.2
+# 2.1.2 (April 2, 2020)
 
 - Improve documentation for `getTextEventTarget()` method.
 
