@@ -1,3 +1,8 @@
+# 2.1.2
+
+- Improve documentation for `getTextEventTarget()` method.
+
+
 # 2.1.1 (December 29, 2020)
 
 - Add `pressOn.PrintDialog`: call print dialog.
