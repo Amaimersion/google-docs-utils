@@ -376,7 +376,14 @@ On which index `word` ends in `text`. Can be used for `substring()`.
 GoogleDocsUtils.getTextEventTarget(): HTMLElement | Document;
 ```
 
-To this element you can dispatch keyboard events. You can't just send keyboard events to current `document`, because Google Docs uses separate element to handle keyboard events.
+This element can be used to interact with text events, in particular with keyboard events (`keyup`, `keydown`, `keypress`). You can dispatch text events to that element and add event listeners to that element:
+
+- `GoogleDocsUtils.getTextEventTarget().dispatchEvent()`
+- `GoogleDocsUtils.getTextEventTarget().addEventListener()`
+
+You can't just interact with current `document`, because Google Docs uses separate element (`iframe` at the moment) to handle keyboard events. This element is always active (`document.activeElement`), and all text events will be handled by that element.
+
+Note that you can't interact with other events. For example, with mouse events. You also can't interact with selection events, because Google Docs implemented its own selection mechanism. Use [getSelection](#getselection) instead.
 
 ### clearTextContent
 

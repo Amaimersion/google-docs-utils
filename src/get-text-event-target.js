@@ -11,7 +11,7 @@ import {isIframe} from './common/utils';
  *
  * @returns {HTMLElement | Document}
  * A target that can be used to send text events
- * to Google Docs page.
+ * and listens for text events (in particular, keyboard events).
  */
 export default function getTextEventTarget() {
     /**
