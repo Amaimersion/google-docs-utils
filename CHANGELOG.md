@@ -5,6 +5,11 @@
 - `getLinesTextElements()`, `getLinesText()`, `getCaret()`: fixed a bug when text of a single line with different formatting not handled correctly.
 
 
+# 2.1.2 (April 2, 2020)
+
+- Improve documentation for `getTextEventTarget()` method.
+
+
 # 2.1.1 (December 29, 2020)
 
 - Add `pressOn.PrintDialog`: call print dialog.
