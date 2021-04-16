@@ -1,7 +1,7 @@
 # 2.2.0
 
 - `getWordElements()`: fixed a bug when text of a single line with different formatting not handled correctly. **BREAKING CHANGES:** now it will return array of arrays where `[]` - represents line, `[][]` - represents all word nodes of that line. [#4](https://github.com/Amaimersion/google-docs-utils/issues/4)
-- `getCaret()`: **BREAKING CHANGES:** `positionIndex` renamed to `positionIndexRelativeToWord`. Now it will represents index relative to word node, not entire line.
+- `getCaret()`: **BREAKING CHANGES:** `positionIndex` renamed to `positionIndexRelativeToWord`. Now it will represent index relative to word node, not entire line.
 - `getLinesTextElements()`, `getLinesText()`, `getCaret()`: fixed a bug when text of a single line with different formatting not handled correctly.
 
 
