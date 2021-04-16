@@ -1,3 +1,4 @@
+import {charIsWordChar} from './common/utils';
 import getCaret from './get-caret';
 import clearTextContent from './clear-text-content';
 
@@ -17,18 +18,26 @@ export default function getCaretWord() {
     const result = {
         word: '',
         text: caretText,
-        indexStart: caret.positionIndex,
-        indexEnd: caret.positionIndex
+        indexStart: caret.positionIndexRelativeToWord,
+        indexEnd: caret.positionIndexRelativeToWord
     };
 
     // not strict `>=`, because we may shift
     // by one to the left in further
-    if (caret.positionIndex > caretText.length) {
+    if (caret.positionIndexRelativeToWord > caretText.length) {
         return result;
     }
 
-    const indexStart = getBoundaryIndex(caret.positionIndex, caretText, true);
-    const indexEnd = getBoundaryIndex(caret.positionIndex, caretText, false);
+    const indexStart = getBoundaryIndex(
+        caret.positionIndexRelativeToWord,
+        caretText,
+        true
+    );
+    const indexEnd = getBoundaryIndex(
+        caret.positionIndexRelativeToWord,
+        caretText,
+        false
+    );
 
     result.indexStart = indexStart;
     result.indexEnd = indexEnd;
@@ -158,5 +167,5 @@ function charIsOutOfWord(character) {
         return true;
     }
 
-    return (character.match(/[\w]/) == null);
+    return !charIsWordChar(character);
 }

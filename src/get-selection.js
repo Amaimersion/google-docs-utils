@@ -5,7 +5,16 @@ import clearTextContent from './clear-text-content';
 
 
 /**
- * @returns
+ * @returns {Array<null | Array<object | null>>}
+ * Selection data for every rendered line.
+ * `[]` - represents line, `[][]` - represents all
+ * selected word nodes.
+ * `[]` - element will be `null` if that line doesn't
+ * contains selection at all, otherwise it will be array.
+ * `[][]` - it is all selected word nodes (see `getWordElements()`
+ * documentation for more). If word node not selected (i.e., selection
+ * don't overlaps that node), then value will be `null`, otherwise
+ * it will be an object that describes selection of that word node.
  *
  * @throws
  * Throws an error if unable to get information
@@ -30,47 +39,59 @@ export default function getSelection() {
 
     for (let i = 0; i !== count; i++) {
         const selectionElement = selectionElements[i];
-        const wordElement = wordElements[i];
 
-        if (!selectionElement || !wordElement) {
+        if (!selectionElement) {
             result.push(emptyValue);
 
             continue;
         }
 
-        const originalText = clearTextContent(wordElement.textContent);
-        const textCSS = wordElement.style.cssText;
-        const wordRect = wordElement.getBoundingClientRect();
-        const selectionRect = selectionElement.getBoundingClientRect();
-        const selectionIndexes = calculateSelectionIndexes(
-            originalText,
-            textCSS,
-            wordRect,
-            selectionRect
-        );
-        const notSelected = (!selectionIndexes);
+        const line = wordElements[i];
+        const lineSelection = [];
 
-        if (notSelected) {
-            result.push(emptyValue);
+        for (const wordElement of line) {
+            if (!wordElement) {
+                lineSelection.push(emptyValue);
 
-            continue;
+                continue;
+            }
+
+            const originalText = clearTextContent(wordElement.textContent);
+            const textCSS = wordElement.style.cssText;
+            const wordRect = wordElement.getBoundingClientRect();
+            const selectionRect = selectionElement.getBoundingClientRect();
+            const selectionIndexes = calculateSelectionIndexes(
+                originalText,
+                textCSS,
+                wordRect,
+                selectionRect
+            );
+            const notSelected = (!selectionIndexes);
+
+            if (notSelected) {
+                lineSelection.push(emptyValue);
+
+                continue;
+            }
+
+            const selectedText = originalText.substring(
+                selectionIndexes.start,
+                selectionIndexes.end
+            );
+
+            lineSelection.push({
+                text: originalText,
+                selectedText: selectedText,
+                selectionStart: selectionIndexes.start,
+                selectionEnd: selectionIndexes.end,
+                textRect: wordRect,
+                selectionRect: selectionRect,
+                textElement: wordElement,
+                selectionElement: selectionElement
+            });
         }
 
-        const selectedText = originalText.substring(
-            selectionIndexes.start,
-            selectionIndexes.end
-        );
-
-        result.push({
-            text: originalText,
-            selectedText: selectedText,
-            selectionStart: selectionIndexes.start,
-            selectionEnd: selectionIndexes.end,
-            textRect: wordRect,
-            selectionRect: selectionRect,
-            textElement: wordElement,
-            selectionElement: selectionElement
-        });
+        result.push(lineSelection);
     }
 
     return result;

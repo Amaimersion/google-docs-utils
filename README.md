@@ -47,6 +47,7 @@ Utilities for interaction with Google Docs using JavaScript.
   - [typeText](#typetext)
   - [isTextSelected](#istextselected)
   - [deleteSelection](#deleteselection)
+- [Known limitations](#known-limitations)
 - [Version naming](#version-naming)
 - [Contributing](#contributing)
 - [Project history](#project-history)
@@ -167,12 +168,12 @@ Returns all lines of all rendered editor pages. Note that it also contains heade
 GoogleDocsUtils.getLinesTextElements(): HTMLElement[];
 ```
 
-Return all text elements of all rendered editor pages. Note that it also contains header text elements of every page, even if header is empty.
+Returns all text elements of all rendered editor pages. Note that it also contains header text elements of every page, even if header is empty.
 
 ### getLinesText
 
 ```typescript
-GoogleDocsUtils.getLinesTextElements(): string[];
+GoogleDocsUtils.getLinesText(): string[];
 ```
 
 Returns text content of every line of all rendered pages. If line is empty, then empty string will be used as a value for that line.
@@ -213,10 +214,14 @@ End index for `substring()`. If not specified, then end of line is assumed.
 ### getWordElements
 
 ```typescript
-GoogleDocsUtils.getWordElements(): HTMLElement[];
+GoogleDocsUtils.getWordElements(): Array<HTMLElement[]>;
 ```
 
-Return all nodes of all rendered lines which contains actual text of line. There is no point to change text of line through `textContent` or `innerText`, because these changes will be not recognized correctly.
+Returns all nodes of all rendered lines which contains actual text of line. There is no point to change text of line through `textContent` or `innerText`, because these changes will be not recognized correctly.
+
+`[]` - represents line, `[][]` - represents all word nodes of that line.
+
+If text of line contains various formatting (font, bold, etc.), then it will be splitted into several word nodes. For example, "some [Arial font] text [Roboto font]" will be splitted into two nodes, "some text [Arial font]" will be represented as one node and "another [Arial font, normal] text [Arial font, bold]" will be splitted into two nodes.
 
 ### getSelectionOverlayElements
 
@@ -229,16 +234,18 @@ Returns all selection overlay elements of all rendered lines. If there are no se
 ### getSelection
 
 ```typescript
-GoogleDocsUtils.getSelection(): Array<SelectionData | null>;
+GoogleDocsUtils.getSelection(): Array<null | Array<GetSelectionResult | null>>;
 ```
 
-Returns data about selection for every rendered line. Note that header line is also included in returned array. If there are no selection in a line, then `null` will be used as a value for that line.
+Returns data about selection for every rendered line. Note that header line is also included in returned array.
+
+If line not selected at all, then `[]` will be equal to `null`, otherwise it will be an array that describes selection of all word nodes (see [getWordElements()](#getwordelements) documentation for more). `[][]` will be equal to `null` if that word node not part of selection, otherwise it will be an object that describes selection of that word node.
 
 **SelectionData.text**
 
 - type: `string`
 
-Original text of line.
+Original text of word node.
 
 **SelectionData.selectedText**
 
@@ -250,13 +257,13 @@ Selected text.
 
 - type: `number`
 
-Index where selection starts. It can be used for `substring()`.
+Index where selection starts. It can be used for `substring()`. It is relative to word node, not entire line.
 
 **SelectionData.selectionEnd**
 
 - type: `number`
 
-Index where selection ends. It can be used for `substring()`.
+Index where selection ends. It can be used for `substring()`. It is relative to word node, not entire line.
 
 **SelectionData.textElement**
 
@@ -268,7 +275,7 @@ HTML element which contains actual text.
 
 - type: `HTMLElement`
 
-HTML element which contains selection overlay element.
+HTML element which contains selection overlay element. Every not empty `[][]` will have same `selectionElement`.
 
 **SelectionData.textRect**
 
@@ -280,7 +287,7 @@ HTML element which contains selection overlay element.
 
 - type: `DOMRectReadOnly`
 
-`DOMRect` of `selectionElement`.
+`DOMRect` of `selectionElement`. Every not empty `[][]` will have same `selectionRect`.
 
 ### getCursorElement
 
@@ -332,11 +339,13 @@ Element which contains text of line on which caret is placed.
 
 Global index of line.
 
-**CaretData.positionIndex**
+**CaretData.positionIndexRelativeToWord**
 
 - type: `number`
 
-Before what letter caret is placed. For example, caret is placed before `w` letter in `one two three` text. `positionIndex` will be equal to `5` in that case.
+Before what letter caret is placed. For example, caret is placed before `w` letter in `one two three` text. `positionIndexRelativeToWord` will be equal to `5` in that case.
+
+This index relates to word node, not entire line. For example, if line contains two words with different fonts, then there will be two word nodes.
 
 ### getCaretWord
 
@@ -345,6 +354,8 @@ GoogleDocsUtils.getCaretWord(): CaretWordData;
 ```
 
 Returns data about word on which caret is currently placed.
+
+Note that this method will not work with languages which doesn't have upper and lower symbols. For example: Chinese, Japanese, Arabic, Hebrew, etc.
 
 **CaretWordData.word**
 
@@ -388,7 +399,7 @@ Note that you can't interact with other events. For example, with mouse events. 
 ### clearTextContent
 
 ```typescript
-GoogleDocsUtils.getTextEventTarget(text): string;
+GoogleDocsUtils.clearTextContent(text): string;
 ```
 
 Clears text that was extracted using `textContent` or `innerText`. It is important to handle extracted text, because it may contain special invisible symbols like `ZWNJ` or `NBSP` - these symbols will lead to unexpected result.
@@ -533,6 +544,17 @@ GoogleDocsUtils.deleteSelection(): boolean;
 ```
 
 Removes current selection. Returns `true` if selection was removed, otherwise returns `false` if nothing to remove because nothing is selected.
+
+
+## Known limitations
+
+This library may not work correctly in some conditions. It is because it still not well tested and not well developed. However, there are already some known limitations that can (but won't necessarily will) lead to problems.
+
+So, if possible, avoid these conditions:
+- using of non-English text.
+- using of various formatting (font, bold, etc.).
+
+If you experiencing some issues with these or undocumented conditions, then feel free to [create issue](https://github.com/Amaimersion/google-docs-utils/issues/new).
 
 
 ## Version naming

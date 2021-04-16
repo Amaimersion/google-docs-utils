@@ -1,4 +1,4 @@
-// Type definitions for google-docs-utils 2.1
+// Type definitions for google-docs-utils 2.2
 // Project: https://github.com/Amaimersion/google-docs-utils/blob/master/README.md
 // Definitions by: Sergey Kuznetsov <https://github.com/Amaimersion>
 // Definitions: https://github.com/Amaimersion/google-docs-utils
@@ -25,7 +25,7 @@ interface GetCaretResult {
     element: HTMLElement;
     wordElement: HTMLElement;
     lineIndex: number;
-    positionIndex: number;
+    positionIndexRelativeToWord: number;
 }
 
 interface GetCaretWordResult {
@@ -60,11 +60,11 @@ export function getLineText(
 
 export function clearTextContent(textContent: string): string;
 
-export function getWordElements(): QuerySelectorAllResult;
+export function getWordElements(): QuerySelectorAllResult[];
 
 export function getSelectionOverlayElements(): QuerySelectorAllResult;
 
-export function getSelection(): Array<GetSelectionResult | null>;
+export function getSelection(): Array<null | Array<GetSelectionResult | null>>;
 
 export function getCursorElement(): QuerySelectorResult;
 
