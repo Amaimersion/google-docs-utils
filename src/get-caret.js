@@ -28,6 +28,7 @@ export default function getCaret() {
         lineIndex: null,
         positionIndexRelativeToWord: null
     };
+    let resultFound = false;
 
     for (let lineIndex = 0; lineIndex !== wordElements.length; lineIndex++) {
         const line = wordElements[lineIndex];
@@ -50,7 +51,12 @@ export default function getCaret() {
                 wordElement.textContent,
                 wordElement.style.cssText
             );
+            resultFound = true;
 
+            break;
+        }
+
+        if (resultFound) {
             break;
         }
     }
