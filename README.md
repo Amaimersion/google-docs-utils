@@ -352,6 +352,8 @@ GoogleDocsUtils.getCaretWord(): CaretWordData;
 
 Returns data about word on which caret is currently placed.
 
+Note that this method will not work with languages which doesn't have upper and lower symbols. For example: Chinese, Japanese, Arabic, Hebrew, etc.
+
 **CaretWordData.word**
 
 - type: `string`

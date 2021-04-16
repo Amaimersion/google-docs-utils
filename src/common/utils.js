@@ -74,3 +74,28 @@ export function isRectsOverlap(a, b) {
         (a.bottom >= b.top)
     );
 }
+
+
+/**
+ * Similar to RegExp `\w`, but also supports non-ASCII characters
+ *
+ * WARNING:
+ * it will not work for Chinese, Japanese, Arabic, Hebrew and most
+ * other scripts which doesn't have upper and lower latters.
+ *
+ * @param {string} char
+ * Char to check.
+ */
+export function charIsWordChar(char) {
+    // ASCII, numbers, underscores and other symbols
+    if (char.match(/[\w]/)) {
+        return true;
+    }
+
+    // https://stackoverflow.com/a/32567789/8445442
+    if (char.toLowerCase() !== char.toUpperCase()) {
+        return true;
+    }
+
+    return false;
+}

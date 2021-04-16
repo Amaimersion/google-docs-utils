@@ -1,3 +1,4 @@
+import {charIsWordChar} from './common/utils';
 import getCaret from './get-caret';
 import clearTextContent from './clear-text-content';
 
@@ -166,5 +167,5 @@ function charIsOutOfWord(character) {
         return true;
     }
 
-    return (character.match(/[\w]/) == null);
+    return !charIsWordChar(character);
 }
