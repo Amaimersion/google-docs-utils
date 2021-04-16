@@ -64,7 +64,7 @@ export function getWordElements(): QuerySelectorAllResult[];
 
 export function getSelectionOverlayElements(): QuerySelectorAllResult;
 
-export function getSelection(): Array<GetSelectionResult | null>;
+export function getSelection(): Array<null | Array<GetSelectionResult | null>>;
 
 export function getCursorElement(): QuerySelectorResult;
 

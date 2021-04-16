@@ -5,7 +5,16 @@ import clearTextContent from './clear-text-content';
 
 
 /**
- * @returns
+ * @returns {Array<null | Array<object | null>>}
+ * Selection data for every rendered line.
+ * `[]` - represents line, `[][]` - represents all
+ * selected word nodes.
+ * `[]` - element will be `null` if that line doesn't
+ * contains selection at all, otherwise it will be array.
+ * `[][]` - it is all selected word nodes (see `getWordElements()`
+ * documentation for more). If word node not selected (i.e., selection
+ * don't overlaps that node), then value will be `null`, otherwise
+ * it will be an object that describes selection of that word node.
  *
  * @throws
  * Throws an error if unable to get information
@@ -38,10 +47,11 @@ export default function getSelection() {
         }
 
         const line = wordElements[i];
+        const lineSelection = [];
 
         for (const wordElement of line) {
             if (!wordElement) {
-                result.push(emptyValue);
+                lineSelection.push(emptyValue);
 
                 continue;
             }
@@ -59,7 +69,7 @@ export default function getSelection() {
             const notSelected = (!selectionIndexes);
 
             if (notSelected) {
-                result.push(emptyValue);
+                lineSelection.push(emptyValue);
 
                 continue;
             }
@@ -69,7 +79,7 @@ export default function getSelection() {
                 selectionIndexes.end
             );
 
-            result.push({
+            lineSelection.push({
                 text: originalText,
                 selectedText: selectedText,
                 selectionStart: selectionIndexes.start,
@@ -80,6 +90,8 @@ export default function getSelection() {
                 selectionElement: selectionElement
             });
         }
+
+        result.push(lineSelection);
     }
 
     return result;

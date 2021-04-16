@@ -234,16 +234,18 @@ Returns all selection overlay elements of all rendered lines. If there are no se
 ### getSelection
 
 ```typescript
-GoogleDocsUtils.getSelection(): Array<SelectionData | null>;
+GoogleDocsUtils.getSelection(): Array<null | Array<GetSelectionResult | null>>;
 ```
 
-Returns data about selection for every rendered line. Note that header line is also included in returned array. If there are no selection in a line, then `null` will be used as a value for that line.
+Returns data about selection for every rendered line. Note that header line is also included in returned array.
+
+If line not selected at all, then `[]` will be equal to `null`, otherwise it will be an array that describes selection of all word nodes (see [getWordElements()](#getwordelements) documentation for more). `[][]` will be equal to `null` if that word node not part of selection, otherwise it will be an object that describes selection of that word node.
 
 **SelectionData.text**
 
 - type: `string`
 
-Original text of line.
+Original text of word node.
 
 **SelectionData.selectedText**
 
@@ -255,13 +257,13 @@ Selected text.
 
 - type: `number`
 
-Index where selection starts. It can be used for `substring()`.
+Index where selection starts. It can be used for `substring()`. It is relative to word node, not entire line.
 
 **SelectionData.selectionEnd**
 
 - type: `number`
 
-Index where selection ends. It can be used for `substring()`.
+Index where selection ends. It can be used for `substring()`. It is relative to word node, not entire line.
 
 **SelectionData.textElement**
 
@@ -273,7 +275,7 @@ HTML element which contains actual text.
 
 - type: `HTMLElement`
 
-HTML element which contains selection overlay element.
+HTML element which contains selection overlay element. Every not empty `[][]` will have same `selectionElement`.
 
 **SelectionData.textRect**
 
@@ -285,7 +287,7 @@ HTML element which contains selection overlay element.
 
 - type: `DOMRectReadOnly`
 
-`DOMRect` of `selectionElement`.
+`DOMRect` of `selectionElement`. Every not empty `[][]` will have same `selectionRect`.
 
 ### getCursorElement
 
