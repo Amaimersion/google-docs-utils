@@ -340,7 +340,7 @@ Global index of line.
 
 - type: `number`
 
-Before what letter caret is placed. For example, caret is placed before `w` letter in `one two three` text. `positionIndex` will be equal to `5` in that case.
+Before what letter caret is placed. For example, caret is placed before `w` letter in `one two three` text. `positionIndexRelativeToWord` will be equal to `5` in that case.
 
 This index relates to word node, not entire line. For example, if line contains two words with different fonts, then there will be two word nodes.
 
