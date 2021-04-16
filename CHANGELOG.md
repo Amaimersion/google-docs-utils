@@ -1,4 +1,4 @@
-# 2.2.0
+# 2.2.0 (April 16, 2021)
 
 - `getWordElements()`: fixed a bug when text of line with different formatting not handled correctly. **BREAKING CHANGES:** now it will return array of arrays. See documentation for more. [#4](https://github.com/Amaimersion/google-docs-utils/issues/4)
 - `getSelection()`: fixed a bug when text of line with different formatting not handled correctly. **BREAKING CHANGES:** now it will return array of arrays. See documentation for more.
