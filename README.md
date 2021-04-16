@@ -220,7 +220,7 @@ Returns all nodes of all rendered lines which contains actual text of line. Ther
 
 `[]` - represents line, `[][]` - represents all word nodes of that line.
 
-If text of single line contains various formatting (font, etc.), then it will be splitted into several nodes. For example, "some [Arial font] text [Roboto font]" will be splitted into two nodes, and "some text [Arial font]" will be represented as one node.
+If text of line contains various formatting (font, bold, etc.), then it will be splitted into several word nodes. For example, "some [Arial font] text [Roboto font]" will be splitted into two nodes, "some text [Arial font]" will be represented as one node and "another [Arial font, normal] text [Arial font, bold]" will be splitted into two nodes.
 
 ### getSelectionOverlayElements
 
