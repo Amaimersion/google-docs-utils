@@ -47,6 +47,7 @@ Utilities for interaction with Google Docs using JavaScript.
   - [typeText](#typetext)
   - [isTextSelected](#istextselected)
   - [deleteSelection](#deleteselection)
+- [Known limitations](#known-limitations)
 - [Version naming](#version-naming)
 - [Contributing](#contributing)
 - [Project history](#project-history)
@@ -541,6 +542,17 @@ GoogleDocsUtils.deleteSelection(): boolean;
 ```
 
 Removes current selection. Returns `true` if selection was removed, otherwise returns `false` if nothing to remove because nothing is selected.
+
+
+## Known limitations
+
+This library may not work correctly in some conditions. It is because it still not well tested and not well developed. However, there are already some known limitations that can (but won't necessarily will) lead to problems.
+
+So, if possible, avoid these conditions:
+- using of non-English text.
+- using of various formatting (font, bold, etc.).
+
+If you experiencing some issues with these or undocumented conditions, then feel free to [create issue](https://github.com/Amaimersion/google-docs-utils/issues/new).
 
 
 ## Version naming

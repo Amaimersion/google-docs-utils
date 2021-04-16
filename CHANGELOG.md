@@ -4,6 +4,7 @@
 - `getCaret()`: **BREAKING CHANGES:** `positionIndex` renamed to `positionIndexRelativeToWord`. Now it will represent index relative to word node, not entire line.
 - `getCaretWord()`: fixed a bug when this method not worked with other languages but English. **WARNING:** it still not work with languages which doesn't have upper and lower symbols (Chinese, Japanese, Arabic, Hebrew, etc.).
 - `getLinesTextElements()`, `getLinesText()`, `getCaret()`: fixed a bug when text of a single line with different formatting not handled correctly.
+- add documentation about known limitations.
 
 
 # 2.1.2 (April 2, 2021)
