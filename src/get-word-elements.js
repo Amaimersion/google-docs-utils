@@ -5,12 +5,12 @@ import getLinesElements from './get-lines-elements';
 
 /**
  * @returns {Array<HTMLElement[]>}
- * Each element is a line, each elements of that
- * line element is a word nodes of that line.
- * These nodes contains actual text of line.
+ * Each element is a line, each of elements
+ * of that line is a word node of that line.
+ * These word nodes contains actual text of line.
  *
  * NOTE:
- * if text of single line contains various formatting
+ * if text of line contains various formatting
  * (font, etc.), then it will be splitted into several nodes.
  * For example, "some [Arial font] text [Roboto font]" will be
  * splitted into two nodes, and "some text [Arial font]" will be
