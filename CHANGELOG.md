@@ -5,7 +5,7 @@
 - `getLinesTextElements()`, `getLinesText()`, `getCaret()`: fixed a bug when text of a single line with different formatting not handled correctly.
 
 
-# 2.1.2 (April 2, 2020)
+# 2.1.2 (April 2, 2021)
 
 - Improve documentation for `getTextEventTarget()` method.
 
