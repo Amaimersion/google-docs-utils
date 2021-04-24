@@ -42,7 +42,10 @@ function createKeyboardEvent(
     }
 
     if (keyCode == null) {
-        keyCode = key.charCodeAt(0);
+        // `codePointAt`, not `charCodeAt`, because of
+        // eslint-disable-next-line max-len
+        // https://github.com/Amaimersion/google-docs-utils/issues/8#issuecomment-824117587
+        keyCode = key.codePointAt(0);
     }
 
     return new KeyboardEvent(
@@ -62,8 +65,9 @@ function createKeyboardEvent(
             code: code,
 
             // it is important to also specify
-            // these two deprecated properties
+            // these deprecated properties
             keyCode: keyCode,
+            charCode: keyCode,
             which: keyCode,
 
             ...eventOptions
