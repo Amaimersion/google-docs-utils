@@ -46,6 +46,7 @@ Utilities for interaction with Google Docs using JavaScript.
     - [PrintDialog](#printdialog)
   - [typeText](#typetext)
   - [isTextSelected](#istextselected)
+  - [isDocumentActive](#isdocumentactive)
   - [deleteSelection](#deleteselection)
 - [Known limitations](#known-limitations)
 - [Version naming](#version-naming)
@@ -536,6 +537,14 @@ GoogleDocsUtils.isTextSelected(): boolean;
 ```
 
 Returns status that indicates if text selection is exists on either single or multiple lines.
+
+### isDocumentActive
+
+```typescript
+GoogleDocsUtils.isDocumentActive(): boolean;
+```
+
+Returns status that indicates if document is in active state. Active state means that document is focused (cursor is blinked).
 
 ### deleteSelection
 

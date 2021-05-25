@@ -1,5 +1,7 @@
 # 2.2.1
 
+- Add `isDocumentActive`: check if document is focused and active.
+
 
 # 2.2.0 (April 16, 2021)
 
