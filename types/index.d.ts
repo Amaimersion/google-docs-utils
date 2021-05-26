@@ -101,4 +101,6 @@ export function isDocumentActive(): boolean;
 
 export function deleteSelection(): boolean;
 
+export function focusDocument(): boolean;
+
 //#endregion

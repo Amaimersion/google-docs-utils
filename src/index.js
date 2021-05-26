@@ -26,6 +26,7 @@ import typeText from './type-text';
 import isTextSelected from './is-text-selected';
 import deleteSelection from './delete-selection';
 import isDocumentActive from './is-document-active';
+import focusDocument from './focus-document';
 
 
 export {
@@ -49,5 +50,6 @@ export {
     typeText,
     isTextSelected,
     deleteSelection,
-    isDocumentActive
+    isDocumentActive,
+    focusDocument
 };

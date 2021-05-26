@@ -47,6 +47,7 @@ Utilities for interaction with Google Docs using JavaScript.
   - [typeText](#typetext)
   - [isTextSelected](#istextselected)
   - [isDocumentActive](#isdocumentactive)
+  - [focusDocument](#focusdocument)
   - [deleteSelection](#deleteselection)
 - [Known limitations](#known-limitations)
 - [Version naming](#version-naming)
@@ -545,6 +546,16 @@ GoogleDocsUtils.isDocumentActive(): boolean;
 ```
 
 Returns status that indicates if document is in active state. Active state means that document is focused (cursor is blinked).
+
+### focusDocument
+
+```typescript
+GoogleDocsUtils.focusDocument(): boolean;
+```
+
+Focuses on current document. "Focus" means that document is active and available for editing: cursor is blinking or selection active.
+
+Returns `true` if there was any actions to perform a focus, otherwise `false` if document already was active and nothing was performed.
 
 ### deleteSelection
 
