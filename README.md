@@ -52,7 +52,10 @@ Utilities for interaction with Google Docs using JavaScript.
   - [isTextSelected](#istextselected)
   - [isDocumentActive](#isdocumentactive)
   - [focusDocument](#focusdocument)
-  - [deleteSelection](#deleteselection)
+  - [remove](#remove)
+    - [PrevWord](#prevword)
+    - [NextWord](#nextword)
+    - [Selection](#selection)
 - [Known limitations](#known-limitations)
 - [Version naming](#version-naming)
 - [Contributing](#contributing)
@@ -631,13 +634,37 @@ Focuses on current document. "Focus" means that document is active and available
 
 Returns `true` if there was any actions to perform a focus, otherwise `false` if document already was active and nothing was performed.
 
-### deleteSelection
+### remove
+
+This namespace provides methods to remove different document objects (text, selection, etc).
+
+#### PrevWord
 
 ```typescript
-GoogleDocsUtils.deleteSelection(): boolean;
+GoogleDocsUtils.remove.PrevWord(): void;
 ```
 
-Removes current selection. Returns `true` if selection was removed, otherwise returns `false` if nothing to remove because nothing is selected.
+Removes word according to the following logic:
+- if previous word is present, then it will be removed
+- else content from current line will be divided with previous line
+
+#### NextWord
+
+```typescript
+GoogleDocsUtils.remove.NextWord(): void;
+```
+
+Removes word according to the following logic:
+- if next word is present, then it will be removed
+- else content from current line will be divided with next line
+
+#### Selection
+
+```typescript
+GoogleDocsUtils.remove.Selection(): boolean;
+```
+
+Removes current selection. Returns `true` if selection was removed, otherwise returns `false` if nothing to remove (because nothing is selected).
 
 
 ## Known limitations

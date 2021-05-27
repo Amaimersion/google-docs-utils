@@ -113,8 +113,12 @@ export function isTextSelected(): boolean;
 
 export function isDocumentActive(): boolean;
 
-export function deleteSelection(): boolean;
-
 export function focusDocument(): boolean;
+
+export const remove: {
+    PrevWord: () => void,
+    NextWord: () => void,
+    Selection: () => boolean
+};
 
 //#endregion

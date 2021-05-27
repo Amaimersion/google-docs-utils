@@ -24,9 +24,9 @@ import getCaretWord from './get-caret-word';
 import * as pressOn from './press-on';
 import typeText from './type-text';
 import isTextSelected from './is-text-selected';
-import deleteSelection from './delete-selection';
 import isDocumentActive from './is-document-active';
 import focusDocument from './focus-document';
+import * as remove from './remove';
 
 
 export {
@@ -49,7 +49,7 @@ export {
     pressOn,
     typeText,
     isTextSelected,
-    deleteSelection,
     isDocumentActive,
-    focusDocument
+    focusDocument,
+    remove
 };
