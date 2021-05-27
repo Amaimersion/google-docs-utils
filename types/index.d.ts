@@ -1,4 +1,4 @@
-// Type definitions for google-docs-utils 2.2
+// Type definitions for google-docs-utils 2.3
 // Project: https://github.com/Amaimersion/google-docs-utils/blob/master/README.md
 // Definitions by: Sergey Kuznetsov <https://github.com/Amaimersion>
 // Definitions: https://github.com/Amaimersion/google-docs-utils

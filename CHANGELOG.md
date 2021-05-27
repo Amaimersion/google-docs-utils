@@ -1,4 +1,4 @@
-# 2.2.1
+# 2.3.0
 
 - Add `isDocumentActive`: check if document is focused and active.
 - Add `focusDocument`: make document focused and active.
