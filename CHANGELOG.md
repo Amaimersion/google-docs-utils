@@ -2,6 +2,7 @@
 
 - Add `isDocumentActive`: check if document is focused and active.
 - Add `focusDocument`: make document focused and active.
+- `pressOn`: **BREAKING CHANGES:** `SelectAll` moved to `select.All`. Added: `Home`, `End`, `Bold`, `Italic`, `Underline`. `Character`, `Delete`, `Backspace`, `ArrowLeft`, `ArrowRight`, `ArrowUp`, `ArrowDown` can accept optional modificator flag (Ctrl or Shift).
 
 
 # 2.2.0 (April 16, 2021)

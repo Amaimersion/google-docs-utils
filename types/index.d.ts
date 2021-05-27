@@ -9,6 +9,16 @@
 
 type QuerySelectorResult<T = HTMLElement> = T | null;
 type QuerySelectorAllResult<T = HTMLElement> = T[];
+type CtrlModificator = {
+    ctrlKey?: boolean;
+};
+type ShiftModificator = {
+    shiftKey?: boolean;
+};
+type CtrlShiftModificator = (
+    CtrlModificator &
+    ShiftModificator
+);
 
 interface GetSelectionResult {
     text: string;
@@ -77,20 +87,24 @@ export function getCaret(): GetCaretResult | null;
 export function getCaretWord(): GetCaretWordResult | null;
 
 export const pressOn: {
-    Character: (char: string) => void,
+    Character: (char: string, modificator?: CtrlShiftModificator) => void,
     Space: () => void,
-    Delete: () => void,
-    Backspace: () => void,
+    Delete: (modificator?: CtrlModificator) => void,
+    Backspace: (modificator?: CtrlModificator) => void,
     Enter: () => void,
     Tab: () => void,
-    ArrowLeft: () => void,
-    ArrowRight: () => void,
-    ArrowUp: () => void,
-    ArrowDown: () => void,
+    ArrowLeft: (modificator?: CtrlShiftModificator) => void,
+    ArrowRight: (modificator?: CtrlShiftModificator) => void,
+    ArrowUp: (modificator?: CtrlShiftModificator) => void,
+    ArrowDown: (modificator?: CtrlShiftModificator) => void,
     Undo: () => void,
     Redo: () => void,
-    SelectAll: () => void,
-    PrintDialog: () => void
+    PrintDialog: () => void,
+    End: (modificator?: CtrlShiftModificator) => void,
+    Home: (modificator?: CtrlShiftModificator) => void,
+    Bold: () => void,
+    Italic: () => void,
+    Underline: () => void
 };
 
 export function typeText(text: string): void;

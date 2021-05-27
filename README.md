@@ -40,9 +40,13 @@ Utilities for interaction with Google Docs using JavaScript.
     - [ArrowRight](#arrowright)
     - [ArrowUp](#arrowup)
     - [ArrowDown](#arrowdown)
+    - [Home](#home)
+    - [End](#end)
     - [Undo](#undo)
     - [Redo](#redo)
-    - [SelectAll](#selectall)
+    - [Bold](#bold)
+    - [Italic](#italic)
+    - [Underline](#underline)
     - [PrintDialog](#printdialog)
   - [typeText](#typetext)
   - [isTextSelected](#istextselected)
@@ -417,6 +421,8 @@ Raw text of line that was extracted using `textContent` or `innerText`.
 
 This namespace provides methods to imitate physical single key press. You can use this to interact with current editor content: clear current selection using `Delete` key, delete current character using `Backspace` key, move on new line using `Enter` key, etc.
 
+Some methods can accept on/off status of modificator keys (Ctrl, Shift, etc). Not every method support it, so, if it is present, then modificator with `true` provides different behavior than with `false`. By default all modificators are disabled.
+
 If this default typing system not suits for you, you still can implement your own typing system - just send keyboard events to [getTextEventTarget](#gettexteventtarget).
 
 This namespace provides following methods:
@@ -424,7 +430,13 @@ This namespace provides following methods:
 #### Character
 
 ```typescript
-GoogleDocsUtils.pressOn.Character(char): void;
+GoogleDocsUtils.pressOn.Character(
+  char,
+  {
+    ctrlKey = false,
+    shiftKey = false
+  } = {}
+): void;
 ```
 
 **char**
@@ -443,7 +455,11 @@ GoogleDocsUtils.pressOn.Space(): void;
 #### Delete
 
 ```typescript
-GoogleDocsUtils.pressOn.Delete(): void;
+GoogleDocsUtils.pressOn.Delete(
+  {
+    ctrlKey = false
+  } = {}
+): void;
 ```
 
 Difference between [Delete](#delete) and [Backspace](#backspace) is matters.
@@ -451,7 +467,11 @@ Difference between [Delete](#delete) and [Backspace](#backspace) is matters.
 #### Backspace
 
 ```typescript
-GoogleDocsUtils.pressOn.Backspace(): void;
+GoogleDocsUtils.pressOn.Backspace(
+  {
+    ctrlKey = false
+  } = {}
+): void;
 ```
 
 Difference between [Delete](#delete) and [Backspace](#backspace) is matters.
@@ -471,25 +491,67 @@ GoogleDocsUtils.pressOn.Tab(): void;
 #### ArrowLeft
 
 ```typescript
-GoogleDocsUtils.pressOn.ArrowLeft(): void;
+GoogleDocsUtils.pressOn.ArrowLeft(
+  {
+    ctrlKey = false,
+    shiftKey = false
+  } = {}
+): void;
 ```
 
 #### ArrowRight
 
 ```typescript
-GoogleDocsUtils.pressOn.ArrowRight(): void;
+GoogleDocsUtils.pressOn.ArrowRight(
+  {
+    ctrlKey = false,
+    shiftKey = false
+  } = {}
+): void;
 ```
 
 #### ArrowUp
 
 ```typescript
-GoogleDocsUtils.pressOn.ArrowUp(): void;
+GoogleDocsUtils.pressOn.ArrowUp(
+  {
+    ctrlKey = false,
+    shiftKey = false
+  } = {}
+): void;
 ```
 
 #### ArrowDown
 
 ```typescript
-GoogleDocsUtils.pressOn.ArrowDown(): void;
+GoogleDocsUtils.pressOn.ArrowDown(
+  {
+    ctrlKey = false,
+    shiftKey = false
+  } = {}
+): void;
+```
+
+#### Home
+
+```typescript
+GoogleDocsUtils.pressOn.Home(
+  {
+    ctrlKey = false,
+    shiftKey = false
+  } = {}
+): void;
+```
+
+#### End
+
+```typescript
+GoogleDocsUtils.pressOn.End(
+  {
+    ctrlKey = false,
+    shiftKey = false
+  } = {}
+): void;
 ```
 
 #### Undo
@@ -504,10 +566,22 @@ GoogleDocsUtils.pressOn.Undo(): void;
 GoogleDocsUtils.pressOn.Redo(): void;
 ```
 
-#### SelectAll
+#### Bold
 
 ```typescript
-GoogleDocsUtils.pressOn.SelectAll(): void;
+GoogleDocsUtils.pressOn.Bold(): void;
+```
+
+#### Italic
+
+```typescript
+GoogleDocsUtils.pressOn.Italic(): void;
+```
+
+#### Underline
+
+```typescript
+GoogleDocsUtils.pressOn.Underline(): void;
 ```
 
 #### PrintDialog
