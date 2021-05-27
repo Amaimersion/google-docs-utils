@@ -1,4 +1,3 @@
-
 import getActiveCursorElement from './get-active-cursor-element';
 
 
