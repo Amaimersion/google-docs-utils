@@ -121,4 +121,19 @@ export const remove: {
     Selection: () => boolean
 };
 
+export const moveCursorTo: {
+    PrevCharacter: () => void,
+    NextCharacter: () => void,
+    PrevLine: () => void,
+    NextLine: () => void,
+    PrevWord: () => void,
+    NextWord: () => void,
+    PrevParagraph: () => void,
+    NextParagraph: () => void,
+    LineStart: () => void,
+    LineEnd: () => void,
+    DocumentStart: () => void,
+    DocumentEnd: () => void
+};
+
 //#endregion

@@ -56,6 +56,19 @@ Utilities for interaction with Google Docs using JavaScript.
     - [PrevWord](#prevword)
     - [NextWord](#nextword)
     - [Selection](#selection)
+  - [moveCursorTo](#movecursorto)
+    - [PrevCharacter](#prevcharacter)
+    - [NextCharacter](#nextcharacter)
+    - [PrevLine](#prevline)
+    - [NextLine](#nextline)
+    - [PrevWord](#prevword-1)
+    - [NextWord](#nextword-1)
+    - [PrevParagraph](#prevparagraph)
+    - [NextParagraph](#nextparagraph)
+    - [LineStart](#linestart)
+    - [LineEnd](#lineend)
+    - [DocumentStart](#documentstart)
+    - [DocumentEnd](#documentend)
 - [Known limitations](#known-limitations)
 - [Version naming](#version-naming)
 - [Contributing](#contributing)
@@ -665,6 +678,116 @@ GoogleDocsUtils.remove.Selection(): boolean;
 ```
 
 Removes current selection. Returns `true` if selection was removed, otherwise returns `false` if nothing to remove (because nothing is selected).
+
+### moveCursorTo
+
+This namespace provides methods to move cursor over document.
+
+#### PrevCharacter
+
+```typescript
+GoogleDocsUtils.moveCursorTo.PrevCharacter(): void;
+```
+
+Moves cursor to character that is placed to the left of current cursor position. If that character placed on previous line, then previous line will be used.
+
+#### NextCharacter
+
+```typescript
+GoogleDocsUtils.moveCursorTo.NextCharacter(): void;
+```
+
+Moves cursor to character that is placed to the right of current cursor position. If that character placed on next line, then next line will be used.
+
+#### PrevLine
+
+```typescript
+GoogleDocsUtils.moveCursorTo.PrevLine(): void;
+```
+
+Moves cursor to the previous line and tries to keep cursor position. If there is no previous line, then moves cursor to the start of current paragraph.
+
+#### NextLine
+
+```typescript
+GoogleDocsUtils.moveCursorTo.NextLine(): void;
+```
+
+Moves cursor to the next line and tries to keep cursor position. If there is no next line, then moves cursor to the end of current paragraph.
+
+#### PrevWord
+
+```typescript
+GoogleDocsUtils.moveCursorTo.PrevWord(): void;
+```
+
+Moves cursor to word according to the following logic:
+- if it is start of current line, then to the end of previous word on previous line
+- else if it is start of current word, then to the start of previous word
+- else moves to the start of current word
+
+#### NextWord
+
+```typescript
+GoogleDocsUtils.moveCursorTo.NextWord(): void;
+```
+
+Moves cursor to word according to the following logic:
+- if it is end of current line, then to the start of next word on next line
+- else if it is end of current word, then to the end of next word
+- else moves to the end of current word
+
+#### PrevParagraph
+
+```typescript
+GoogleDocsUtils.moveCursorTo.PrevParagraph(): void;
+```
+
+Moves cursor to paragraph according to the following logic:
+- if it is start of current paragraph, then to the start of previous paragraph
+- else moves to the start of current paragraph
+
+#### NextParagraph
+
+```typescript
+GoogleDocsUtils.moveCursorTo.NextParagraph(): void;
+```
+
+Moves cursor to paragraph according to the following logic:
+- if it is end of current paragraph, then to the end of next paragraph
+- else moves to the end of current paragraph
+
+#### LineStart
+
+```typescript
+GoogleDocsUtils.moveCursorTo.LineStart(): void;
+```
+
+Moves cursor to the start of current line.
+
+#### LineEnd
+
+```typescript
+GoogleDocsUtils.moveCursorTo.LineEnd(): void;
+```
+
+Moves cursor to the start of current line.
+
+#### DocumentStart
+
+```typescript
+GoogleDocsUtils.moveCursorTo.DocumentStart(): void;
+```
+
+Moves cursor to the start of document.
+
+#### DocumentEnd
+
+```typescript
+GoogleDocsUtils.moveCursorTo.DocumentEnd(): void;
+```
+
+Moves cursor to the end of document.
 
 
 ## Known limitations

@@ -26,6 +26,7 @@ import typeText from './type-text';
 import isTextSelected from './is-text-selected';
 import isDocumentActive from './is-document-active';
 import focusDocument from './focus-document';
+import * as moveCursorTo from './move-cursor-to';
 import * as remove from './remove';
 
 
@@ -51,5 +52,6 @@ export {
     isTextSelected,
     isDocumentActive,
     focusDocument,
-    remove
+    remove,
+    moveCursorTo
 };

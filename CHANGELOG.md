@@ -3,6 +3,7 @@
 - Add `isDocumentActive`: check if document is focused and active.
 - Add `focusDocument`: make document focused and active.
 - Add `remove` namespace which includes `PrevWord`, `NextWord`, `Selection` methods. Using these methods you can remove document objects.
+- Add `moveCursorTo` namespace which includes `PrevCharacter`, `NextCharacter`, `PrevLine`, `NextLine`, `PrevWord`, `NextWord`, `PrevParagraph`, `NextParagraph`, `LineStart`, `LineEnd`, `DocumentStart`, `DocumentEnd` methods. Using these methods you can move cursor over the document.
 - `deleteSelection`: **BREAKING CHANGES:** moved into `remove.Selection`.
 - `pressOn`: **BREAKING CHANGES:** `SelectAll` moved to `select.All`. Added: `Home`, `End`, `Bold`, `Italic`, `Underline`. `Character`, `Delete`, `Backspace`, `ArrowLeft`, `ArrowRight`, `ArrowUp`, `ArrowDown` can accept optional modificator flag (Ctrl or Shift).
 
