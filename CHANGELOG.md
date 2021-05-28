@@ -1,5 +1,7 @@
 # 2.2.1
 
+- **WARNING**: this library may no longer work after July 2021. See `README` for more.
+
 
 # 2.2.0 (April 16, 2021)
 
