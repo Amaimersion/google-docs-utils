@@ -1,6 +1,6 @@
 {
     "name": "google-docs-utils",
-    "version": "2.2.0",
+    "version": "2.2.1",
     "description": "Utilities for interaction with Google Docs.",
     "main": "index.js",
     "types": "./types/index.d.ts",
@@ -9,6 +9,7 @@
         "watch": "rollup --config rollup.config.js --watch",
         "prepare": "yarn run build",
         "prepublishOnly": "yarn run lint",
+        "postinstall": "node postinstall.js",
         "lint": "eslint index.js './src/**/*.js'",
         "lint-tests": "eslint './test/**/*.js'",
         "http-server": "http-server . -c-1 --ssl --cert ./cert.pem --key ./key.pem",
@@ -45,6 +46,7 @@
         "LICENSE",
         "README.md",
         "index.js",
+        "postinstall.js",
         "dist/",
         "types/"
     ],
