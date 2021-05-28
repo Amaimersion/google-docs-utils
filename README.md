@@ -69,6 +69,20 @@ Utilities for interaction with Google Docs using JavaScript.
     - [LineEnd](#lineend)
     - [DocumentStart](#documentstart)
     - [DocumentEnd](#documentend)
+  - [select](#select)
+    - [All](#all)
+    - [PrevCharacter](#prevcharacter-1)
+    - [NextCharacter](#nextcharacter-1)
+    - [PrevWord](#prevword-2)
+    - [NextWord](#nextword-2)
+    - [PrevLine](#prevline-1)
+    - [NextLine](#nextline-1)
+    - [PrevParagraph](#prevparagraph-1)
+    - [NextParagraph](#nextparagraph-1)
+    - [TextBetweenCursorAndLineStart](#textbetweencursorandlinestart)
+    - [TextBetweenCursorAndLineEnd](#textbetweencursorandlineend)
+    - [TextBetweenCursorAndDocumentStart](#textbetweencursoranddocumentstart)
+    - [TextBetweenCursorAndDocumentEnd](#textbetweencursoranddocumentend)
 - [Known limitations](#known-limitations)
 - [Version naming](#version-naming)
 - [Contributing](#contributing)
@@ -788,6 +802,124 @@ GoogleDocsUtils.moveCursorTo.DocumentEnd(): void;
 ```
 
 Moves cursor to the end of document.
+
+### select
+
+This namespace provides methods to select text content in document.
+
+#### All
+
+```typescript
+GoogleDocsUtils.select.All(): void;
+```
+
+Selects text of entire document.
+
+#### PrevCharacter
+
+```typescript
+GoogleDocsUtils.select.PrevCharacter(): void;
+```
+
+Selects a character that is placed to the left of current cursor position. Following logic will be used, with priority of actions from top to bottom:
+- if at least one character already selected with reverse selection (opposite direction), then lastly selected character will be deselected
+- if at least one character already selected, then next one will be selected. If that next character located on previous line, than that previous line will be used
+- if nothing selected, then first character will be selected
+
+#### NextCharacter
+
+```typescript
+GoogleDocsUtils.select.NextCharacter(): void;
+```
+
+Selects a character that is placed to the right of current cursor position. Following logic will be used, with priority of actions from top to bottom:
+- if at least one character already selected with reverse selection (opposite direction), then lastly selected character will be deselected
+- if at least one character already selected, then next one will be selected. If that next character located on next line, than that next line will be used
+- if nothing selected, then first character will be selected
+
+#### PrevWord
+
+```typescript
+GoogleDocsUtils.select.PrevWord(): void;
+```
+
+Same as `PrevCharacter`, but performs an action with word.
+
+#### NextWord
+
+```typescript
+GoogleDocsUtils.select.NextWord(): void;
+```
+
+Same as `NextCharacter`, but performs an action with word.
+
+#### PrevLine
+
+```typescript
+GoogleDocsUtils.select.PrevLine(): void;
+```
+
+Selects N number of characters to the left where N is a max length of line.
+
+#### NextLine
+
+```typescript
+GoogleDocsUtils.select.NextLine(): void;
+```
+
+Same as `PrevLine`, but uses right direction.
+
+#### PrevParagraph
+
+```typescript
+GoogleDocsUtils.select.PrevParagraph(): void;
+```
+
+Selects a paragraph that is placed to the left of current cursor position. Following logic will be used, with priority of actions from top to bottom:
+- if it is start of current paragraph, then previous paragraph will be selected
+- else text between current paragraph start and current cursor position will be selected
+
+#### NextParagraph
+
+```typescript
+GoogleDocsUtils.select.NextParagraph(): void;
+```
+
+Selects a paragraph that is placed to the right of current cursor position. Following logic will be used, with priority of actions from top to bottom:
+- if it is end of current paragraph, then next paragraph will be NOT selected
+- else text between current paragraph end and current cursor position will be selected
+
+#### TextBetweenCursorAndLineStart
+
+```typescript
+GoogleDocsUtils.select.TextBetweenCursorAndLineStart(): void;
+```
+
+Selects a text between current cursor position and current line start.
+
+#### TextBetweenCursorAndLineEnd
+
+```typescript
+GoogleDocsUtils.select.TextBetweenCursorAndLineEnd(): void;
+```
+
+Same as `TextBetweenCursorAndLineStart`, but interacts with current line end.
+
+#### TextBetweenCursorAndDocumentStart
+
+```typescript
+GoogleDocsUtils.select.TextBetweenCursorAndDocumentStart(): void;
+```
+
+Same as `TextBetweenCursorAndLineStart`, but interacts with document start.
+
+#### TextBetweenCursorAndDocumentEnd
+
+```typescript
+GoogleDocsUtils.select.TextBetweenCursorAndDocumentEnd(): void;
+```
+
+Same as `TextBetweenCursorAndLineStart`, but interacts with document end.
 
 
 ## Known limitations

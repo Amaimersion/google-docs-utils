@@ -28,6 +28,7 @@ import isDocumentActive from './is-document-active';
 import focusDocument from './focus-document';
 import * as moveCursorTo from './move-cursor-to';
 import * as remove from './remove';
+import * as select from './select';
 
 
 export {
@@ -53,5 +54,6 @@ export {
     isDocumentActive,
     focusDocument,
     remove,
-    moveCursorTo
+    moveCursorTo,
+    select
 };

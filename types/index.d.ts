@@ -136,4 +136,20 @@ export const moveCursorTo: {
     DocumentEnd: () => void
 };
 
+export const select: {
+    All: () => void,
+    PrevCharacter: () => void,
+    NextCharacter: () => void,
+    PrevWord: () => void,
+    NextWord: () => void,
+    PrevLine: () => void,
+    NextLine: () => void,
+    PrevParagraph: () => void,
+    NextParagraph: () => void,
+    TextBetweenCursorAndLineStart: () => void,
+    TextBetweenCursorAndLineEnd: () => void,
+    TextBetweenCursorAndDocumentStart: () => void,
+    TextBetweenCursorAndDocumentEnd: () => void
+};
+
 //#endregion

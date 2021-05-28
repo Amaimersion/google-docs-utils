@@ -4,6 +4,7 @@
 - Add `focusDocument`: make document focused and active.
 - Add `remove` namespace which includes `PrevWord`, `NextWord`, `Selection` methods. Using these methods you can remove document objects.
 - Add `moveCursorTo` namespace which includes `PrevCharacter`, `NextCharacter`, `PrevLine`, `NextLine`, `PrevWord`, `NextWord`, `PrevParagraph`, `NextParagraph`, `LineStart`, `LineEnd`, `DocumentStart`, `DocumentEnd` methods. Using these methods you can move cursor over the document.
+- Add `select` namespace which includes `All`, `PrevCharacter`, `NextCharacter`, `PrevWord`, `NextWord`, `PrevLine`, `NextLine`, `PrevParagraph`, `NextParagraph`, `TextBetweenCursorAndLineStart`, `TextBetweenCursorAndLineEnd`, `TextBetweenCursorAndDocumentStart`, `TextBetweenCursorAndDocumentEnd` methods. Using these methods you can select text content in document. [#3](https://github.com/Amaimersion/google-docs-utils/issues/3)
 - `deleteSelection`: **BREAKING CHANGES:** moved into `remove.Selection`.
 - `pressOn`: **BREAKING CHANGES:** `SelectAll` moved to `select.All`. Added: `Home`, `End`, `Bold`, `Italic`, `Underline`. `Character`, `Delete`, `Backspace`, `ArrowLeft`, `ArrowRight`, `ArrowUp`, `ArrowDown` can accept optional modificator flag (Ctrl or Shift).
 
