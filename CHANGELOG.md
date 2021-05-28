@@ -9,6 +9,11 @@
 - `pressOn`: **BREAKING CHANGES:** `SelectAll` moved to `select.All`. Added: `Home`, `End`, `Bold`, `Italic`, `Underline`. `Character`, `Delete`, `Backspace`, `ArrowLeft`, `ArrowRight`, `ArrowUp`, `ArrowDown` can accept optional modificator flag (Ctrl or Shift).
 
 
+# 2.2.1 (May 28, 2021)
+
+- **WARNING**: this library may no longer work after July 2021. See `README` for more.
+
+
 # 2.2.0 (April 16, 2021)
 
 - `getWordElements()`: fixed a bug when text of line with different formatting not handled correctly. **BREAKING CHANGES:** now it will return array of arrays. See documentation for more. [#4](https://github.com/Amaimersion/google-docs-utils/issues/4)
