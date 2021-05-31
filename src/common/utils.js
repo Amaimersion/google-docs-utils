@@ -99,3 +99,66 @@ export function charIsWordChar(char) {
 
     return false;
 }
+
+
+/**
+ * Runs a method when page is fully loaded.
+ *
+ * @param {Function} method
+ * Method to run.
+ */
+export function runOnPageLoaded(method) {
+    // inherit `this` context.
+    const mthd = () => {
+        method();
+    };
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', mthd);
+    } else {
+        mthd();
+    }
+}
+
+
+/**
+ * Converts selectors (`selectors.js`) to list of class names.
+ *
+ * @param {string[]} selectors
+ * Selectors variable from `selectors.js` file.
+ *
+ * @returns
+ * Class names one by one, without dot.
+ * See example for more.
+ *
+ * @example
+ * ([
+ *  '.test', '.test2.iframe', '#nide.hide',
+ *  'div.div1.div2', '#tag'
+ * ]) => [
+ *  'test', 'test2', 'iframe', 'hide',
+ *  'div1', 'div2'
+ * ]
+ */
+export function selectorsToClassList(selectors) {
+    const result = [];
+
+    for (let selector of selectors) {
+        if (!selector.startsWith('.')) {
+            selector = selector.slice(
+                selector.indexOf('.')
+            );
+        }
+
+        selector = selector.slice(1);
+        const classNames = selector.split('.');
+
+        for (const className of classNames) {
+            if (className) {
+                result.push(className);
+            }
+        }
+    }
+
+    return result;
+}

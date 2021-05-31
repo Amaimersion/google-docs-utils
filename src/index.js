@@ -29,6 +29,9 @@ import focusDocument from './focus-document';
 import * as moveCursorTo from './move-cursor-to';
 import * as remove from './remove';
 import * as select from './select';
+import {
+    addEventListener
+} from './mutation-observer';
 
 
 export {
@@ -55,5 +58,6 @@ export {
     focusDocument,
     remove,
     moveCursorTo,
-    select
+    select,
+    addEventListener
 };

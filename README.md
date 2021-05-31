@@ -38,6 +38,8 @@ Utilities for interaction with Google Docs using JavaScript.
   - [getCaretWord](#getcaretword)
   - [getTextEventTarget](#gettexteventtarget)
   - [clearTextContent](#cleartextcontent)
+  - [addEventListener](#addeventlistener)
+    - [selectionchange](#selectionchange)
   - [pressOn](#presson)
     - [Character](#character)
     - [Space](#space)
@@ -455,6 +457,30 @@ Clears text that was extracted using `textContent` or `innerText`. It is importa
 - type: `string`
 
 Raw text of line that was extracted using `textContent` or `innerText`.
+
+### addEventListener
+
+```typescript
+GoogleDocsUtils.addEventListener(type: string, listener: (event: GoogleDocsEvent) => any): void;
+```
+
+Sets up a function that will be called whenever the specified event will occur.
+
+**type**
+
+Case-sensitive type of event. See below documentation for all possible events.
+
+**listener**
+
+Callback function. There can be many functions for single event. Order of calling is same as order of adding. On call every function will receive event details as argument.
+
+**GoogleDocsEvent.type**
+
+The name of the event. Case-insensitive.
+
+#### selectionchange
+
+This event is fired when the current text selection on a document is changed.
 
 ### pressOn
 

@@ -1,5 +1,6 @@
 # 2.3.0
 
+- Add `addEventListener` which supports `selectionchange` event. [#9](https://github.com/Amaimersion/google-docs-utils/issues/9)
 - Add `isDocumentActive`: check if document is focused and active.
 - Add `focusDocument`: make document focused and active.
 - Add `remove` namespace which includes `PrevWord`, `NextWord`, `Selection` methods. Using these methods you can remove document objects.

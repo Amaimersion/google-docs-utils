@@ -11,9 +11,13 @@
  */
 
 
+export const docsEditorContainer = [
+    '#docs-editor-container'
+];
+
 export const docsEditor = [
     '#docs-editor',
-    '#docs-editor-container'
+    ...docsEditorContainer
 ];
 
 export const textEventTarget = [

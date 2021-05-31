@@ -45,6 +45,10 @@ interface GetCaretWordResult {
     indexEnd: number;
 }
 
+interface GoogleDocsEvent {
+    type: string;
+}
+
 //#endregion
 
 
@@ -151,5 +155,10 @@ export const select: {
     TextBetweenCursorAndDocumentStart: () => void,
     TextBetweenCursorAndDocumentEnd: () => void
 };
+
+export function addEventListener(
+    type: string,
+    listener: (event: GoogleDocsEvent) => any
+): void;
 
 //#endregion
