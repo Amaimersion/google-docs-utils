@@ -1,4 +1,4 @@
-# WARNING: may no longer work after July 2021
+# WARNING: this project may no longer work after July 2021
 
 Google Docs plans to switch to canvas based rendering instead of HTML based rendering. Expected date around the end of July 2021.
 
