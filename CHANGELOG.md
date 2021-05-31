@@ -12,7 +12,7 @@
 
 # 2.2.1 (May 28, 2021)
 
-- **WARNING**: this library may no longer work after July 2021. See `README` for more.
+- **WARNING**: this library may no longer work after July 2021. See `README` for more. [#10](https://github.com/Amaimersion/google-docs-utils/issues/10)
 
 
 # 2.2.0 (April 16, 2021)
