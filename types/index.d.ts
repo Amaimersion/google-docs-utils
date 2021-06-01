@@ -9,6 +9,7 @@
 
 type QuerySelectorResult<T = HTMLElement> = T | null;
 type QuerySelectorAllResult<T = HTMLElement> = T[];
+
 type CtrlModificator = {
     ctrlKey?: boolean;
 };
