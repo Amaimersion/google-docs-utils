@@ -1,4 +1,4 @@
-# 2.3.0
+# 2.3.0 (June 1, 2021)
 
 - Add `addEventListener` which supports `selectionchange` event. [#9](https://github.com/Amaimersion/google-docs-utils/issues/9)
 - Add `isDocumentActive`: check if document is focused and active.
