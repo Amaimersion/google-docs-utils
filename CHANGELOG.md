@@ -1,6 +1,18 @@
+# 2.3.0 (June 1, 2021)
+
+- Add `addEventListener` which supports `selectionchange` event. [#9](https://github.com/Amaimersion/google-docs-utils/issues/9)
+- Add `isDocumentActive`: check if document is focused and active.
+- Add `focusDocument`: make document focused and active.
+- Add `remove` namespace which includes `PrevWord`, `NextWord`, `Selection` methods. Using these methods you can remove document objects.
+- Add `moveCursorTo` namespace which includes `PrevCharacter`, `NextCharacter`, `PrevLine`, `NextLine`, `PrevWord`, `NextWord`, `PrevParagraph`, `NextParagraph`, `LineStart`, `LineEnd`, `DocumentStart`, `DocumentEnd` methods. Using these methods you can move cursor over the document.
+- Add `select` namespace which includes `All`, `PrevCharacter`, `NextCharacter`, `PrevWord`, `NextWord`, `PrevLine`, `NextLine`, `PrevParagraph`, `NextParagraph`, `TextBetweenCursorAndLineStart`, `TextBetweenCursorAndLineEnd`, `TextBetweenCursorAndDocumentStart`, `TextBetweenCursorAndDocumentEnd` methods. Using these methods you can select text content in document. [#3](https://github.com/Amaimersion/google-docs-utils/issues/3)
+- `deleteSelection`: **BREAKING CHANGES:** moved into `remove.Selection`.
+- `pressOn`: **BREAKING CHANGES:** `SelectAll` moved to `select.All`. Added: `Home`, `End`, `Bold`, `Italic`, `Underline`. `Character`, `Delete`, `Backspace`, `ArrowLeft`, `ArrowRight`, `ArrowUp`, `ArrowDown` can accept optional modificator flag (Ctrl or Shift).
+
+
 # 2.2.1 (May 28, 2021)
 
-- **WARNING**: this library may no longer work after July 2021. See `README` for more.
+- **WARNING**: this library may no longer work after July 2021. See `README` for more. [#10](https://github.com/Amaimersion/google-docs-utils/issues/10)
 
 
 # 2.2.0 (April 16, 2021)

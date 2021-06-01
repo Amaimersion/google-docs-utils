@@ -1,6 +1,6 @@
-# WARNING: may no longer work after July 2021
+# WARNING: this project may no longer work after July 2021
 
-Google Docs plans to switch to canvas based rendering instead of HTML based rendering. Expected date around the end of July 2021.
+Google Docs plans to switch to canvas based rendering instead of HTML based rendering. Expected date is around the end of July 2021.
 
 This library relies on HTML based rendering. It is means that all existing functionality will stop working with new canvas based rendering. Highly unlikely that all existing functionality will be adopted to canvas based rendering.
 
@@ -38,6 +38,8 @@ Utilities for interaction with Google Docs using JavaScript.
   - [getCaretWord](#getcaretword)
   - [getTextEventTarget](#gettexteventtarget)
   - [clearTextContent](#cleartextcontent)
+  - [addEventListener](#addeventlistener)
+    - [selectionchange](#selectionchange)
   - [pressOn](#presson)
     - [Character](#character)
     - [Space](#space)
@@ -49,13 +51,49 @@ Utilities for interaction with Google Docs using JavaScript.
     - [ArrowRight](#arrowright)
     - [ArrowUp](#arrowup)
     - [ArrowDown](#arrowdown)
+    - [Home](#home)
+    - [End](#end)
     - [Undo](#undo)
     - [Redo](#redo)
-    - [SelectAll](#selectall)
+    - [Bold](#bold)
+    - [Italic](#italic)
+    - [Underline](#underline)
     - [PrintDialog](#printdialog)
   - [typeText](#typetext)
   - [isTextSelected](#istextselected)
-  - [deleteSelection](#deleteselection)
+  - [isDocumentActive](#isdocumentactive)
+  - [focusDocument](#focusdocument)
+  - [remove](#remove)
+    - [PrevWord](#prevword)
+    - [NextWord](#nextword)
+    - [Selection](#selection)
+  - [moveCursorTo](#movecursorto)
+    - [PrevCharacter](#prevcharacter)
+    - [NextCharacter](#nextcharacter)
+    - [PrevLine](#prevline)
+    - [NextLine](#nextline)
+    - [PrevWord](#prevword-1)
+    - [NextWord](#nextword-1)
+    - [PrevParagraph](#prevparagraph)
+    - [NextParagraph](#nextparagraph)
+    - [LineStart](#linestart)
+    - [LineEnd](#lineend)
+    - [DocumentStart](#documentstart)
+    - [DocumentEnd](#documentend)
+  - [select](#select)
+    - [All](#all)
+    - [PrevCharacter](#prevcharacter-1)
+    - [NextCharacter](#nextcharacter-1)
+    - [PrevWord](#prevword-2)
+    - [NextWord](#nextword-2)
+    - [PrevLine](#prevline-1)
+    - [NextLine](#nextline-1)
+    - [PrevParagraph](#prevparagraph-1)
+    - [NextParagraph](#nextparagraph-1)
+    - [TextBetweenCursorAndLineStart](#textbetweencursorandlinestart)
+    - [TextBetweenCursorAndLineEnd](#textbetweencursorandlineend)
+    - [TextBetweenCursorAndDocumentStart](#textbetweencursoranddocumentstart)
+    - [TextBetweenCursorAndDocumentEnd](#textbetweencursoranddocumentend)
 - [Known limitations](#known-limitations)
 - [Version naming](#version-naming)
 - [Contributing](#contributing)
@@ -420,9 +458,35 @@ Clears text that was extracted using `textContent` or `innerText`. It is importa
 
 Raw text of line that was extracted using `textContent` or `innerText`.
 
+### addEventListener
+
+```typescript
+GoogleDocsUtils.addEventListener(type: string, listener: (event: GoogleDocsEvent) => any): void;
+```
+
+Sets up a function that will be called whenever the specified event will occur.
+
+**type**
+
+Case-sensitive type of event. See below documentation for all possible events.
+
+**listener**
+
+Callback function. There can be many functions for single event. Order of calling is same as order of adding. On call every function will receive event details as argument.
+
+**GoogleDocsEvent.type**
+
+The name of the event. Case-insensitive.
+
+#### selectionchange
+
+This event is fired when the current text selection on a document is changed.
+
 ### pressOn
 
 This namespace provides methods to imitate physical single key press. You can use this to interact with current editor content: clear current selection using `Delete` key, delete current character using `Backspace` key, move on new line using `Enter` key, etc.
+
+Some methods can accept on/off status of modificator keys (Ctrl, Shift, etc). Not every method support it, so, if it is present, then modificator with `true` provides different behavior than with `false`. By default all modificators are disabled.
 
 If this default typing system not suits for you, you still can implement your own typing system - just send keyboard events to [getTextEventTarget](#gettexteventtarget).
 
@@ -431,7 +495,13 @@ This namespace provides following methods:
 #### Character
 
 ```typescript
-GoogleDocsUtils.pressOn.Character(char): void;
+GoogleDocsUtils.pressOn.Character(
+  char,
+  {
+    ctrlKey = false,
+    shiftKey = false
+  } = {}
+): void;
 ```
 
 **char**
@@ -450,7 +520,11 @@ GoogleDocsUtils.pressOn.Space(): void;
 #### Delete
 
 ```typescript
-GoogleDocsUtils.pressOn.Delete(): void;
+GoogleDocsUtils.pressOn.Delete(
+  {
+    ctrlKey = false
+  } = {}
+): void;
 ```
 
 Difference between [Delete](#delete) and [Backspace](#backspace) is matters.
@@ -458,7 +532,11 @@ Difference between [Delete](#delete) and [Backspace](#backspace) is matters.
 #### Backspace
 
 ```typescript
-GoogleDocsUtils.pressOn.Backspace(): void;
+GoogleDocsUtils.pressOn.Backspace(
+  {
+    ctrlKey = false
+  } = {}
+): void;
 ```
 
 Difference between [Delete](#delete) and [Backspace](#backspace) is matters.
@@ -478,25 +556,67 @@ GoogleDocsUtils.pressOn.Tab(): void;
 #### ArrowLeft
 
 ```typescript
-GoogleDocsUtils.pressOn.ArrowLeft(): void;
+GoogleDocsUtils.pressOn.ArrowLeft(
+  {
+    ctrlKey = false,
+    shiftKey = false
+  } = {}
+): void;
 ```
 
 #### ArrowRight
 
 ```typescript
-GoogleDocsUtils.pressOn.ArrowRight(): void;
+GoogleDocsUtils.pressOn.ArrowRight(
+  {
+    ctrlKey = false,
+    shiftKey = false
+  } = {}
+): void;
 ```
 
 #### ArrowUp
 
 ```typescript
-GoogleDocsUtils.pressOn.ArrowUp(): void;
+GoogleDocsUtils.pressOn.ArrowUp(
+  {
+    ctrlKey = false,
+    shiftKey = false
+  } = {}
+): void;
 ```
 
 #### ArrowDown
 
 ```typescript
-GoogleDocsUtils.pressOn.ArrowDown(): void;
+GoogleDocsUtils.pressOn.ArrowDown(
+  {
+    ctrlKey = false,
+    shiftKey = false
+  } = {}
+): void;
+```
+
+#### Home
+
+```typescript
+GoogleDocsUtils.pressOn.Home(
+  {
+    ctrlKey = false,
+    shiftKey = false
+  } = {}
+): void;
+```
+
+#### End
+
+```typescript
+GoogleDocsUtils.pressOn.End(
+  {
+    ctrlKey = false,
+    shiftKey = false
+  } = {}
+): void;
 ```
 
 #### Undo
@@ -511,10 +631,22 @@ GoogleDocsUtils.pressOn.Undo(): void;
 GoogleDocsUtils.pressOn.Redo(): void;
 ```
 
-#### SelectAll
+#### Bold
 
 ```typescript
-GoogleDocsUtils.pressOn.SelectAll(): void;
+GoogleDocsUtils.pressOn.Bold(): void;
+```
+
+#### Italic
+
+```typescript
+GoogleDocsUtils.pressOn.Italic(): void;
+```
+
+#### Underline
+
+```typescript
+GoogleDocsUtils.pressOn.Underline(): void;
 ```
 
 #### PrintDialog
@@ -546,13 +678,283 @@ GoogleDocsUtils.isTextSelected(): boolean;
 
 Returns status that indicates if text selection is exists on either single or multiple lines.
 
-### deleteSelection
+### isDocumentActive
 
 ```typescript
-GoogleDocsUtils.deleteSelection(): boolean;
+GoogleDocsUtils.isDocumentActive(): boolean;
 ```
 
-Removes current selection. Returns `true` if selection was removed, otherwise returns `false` if nothing to remove because nothing is selected.
+Returns status that indicates if document is in active state. Active state means that document is focused (cursor is blinked).
+
+### focusDocument
+
+```typescript
+GoogleDocsUtils.focusDocument(): boolean;
+```
+
+Focuses on current document. "Focus" means that document is active and available for editing: cursor is blinking or selection active.
+
+Returns `true` if there was any actions to perform a focus, otherwise `false` if document already was active and nothing was performed.
+
+### remove
+
+This namespace provides methods to remove different document objects (text, selection, etc).
+
+#### PrevWord
+
+```typescript
+GoogleDocsUtils.remove.PrevWord(): void;
+```
+
+Removes word according to the following logic:
+- if previous word is present, then it will be removed
+- else content from current line will be divided with previous line
+
+#### NextWord
+
+```typescript
+GoogleDocsUtils.remove.NextWord(): void;
+```
+
+Removes word according to the following logic:
+- if next word is present, then it will be removed
+- else content from current line will be divided with next line
+
+#### Selection
+
+```typescript
+GoogleDocsUtils.remove.Selection(): boolean;
+```
+
+Removes current selection. Returns `true` if selection was removed, otherwise returns `false` if nothing to remove (because nothing is selected).
+
+### moveCursorTo
+
+This namespace provides methods to move cursor over document.
+
+#### PrevCharacter
+
+```typescript
+GoogleDocsUtils.moveCursorTo.PrevCharacter(): void;
+```
+
+Moves cursor to character that is placed to the left of current cursor position. If that character placed on previous line, then previous line will be used.
+
+#### NextCharacter
+
+```typescript
+GoogleDocsUtils.moveCursorTo.NextCharacter(): void;
+```
+
+Moves cursor to character that is placed to the right of current cursor position. If that character placed on next line, then next line will be used.
+
+#### PrevLine
+
+```typescript
+GoogleDocsUtils.moveCursorTo.PrevLine(): void;
+```
+
+Moves cursor to the previous line and tries to keep cursor position. If there is no previous line, then moves cursor to the start of current paragraph.
+
+#### NextLine
+
+```typescript
+GoogleDocsUtils.moveCursorTo.NextLine(): void;
+```
+
+Moves cursor to the next line and tries to keep cursor position. If there is no next line, then moves cursor to the end of current paragraph.
+
+#### PrevWord
+
+```typescript
+GoogleDocsUtils.moveCursorTo.PrevWord(): void;
+```
+
+Moves cursor to word according to the following logic:
+- if it is start of current line, then to the end of previous word on previous line
+- else if it is start of current word, then to the start of previous word
+- else moves to the start of current word
+
+#### NextWord
+
+```typescript
+GoogleDocsUtils.moveCursorTo.NextWord(): void;
+```
+
+Moves cursor to word according to the following logic:
+- if it is end of current line, then to the start of next word on next line
+- else if it is end of current word, then to the end of next word
+- else moves to the end of current word
+
+#### PrevParagraph
+
+```typescript
+GoogleDocsUtils.moveCursorTo.PrevParagraph(): void;
+```
+
+Moves cursor to paragraph according to the following logic:
+- if it is start of current paragraph, then to the start of previous paragraph
+- else moves to the start of current paragraph
+
+#### NextParagraph
+
+```typescript
+GoogleDocsUtils.moveCursorTo.NextParagraph(): void;
+```
+
+Moves cursor to paragraph according to the following logic:
+- if it is end of current paragraph, then to the end of next paragraph
+- else moves to the end of current paragraph
+
+#### LineStart
+
+```typescript
+GoogleDocsUtils.moveCursorTo.LineStart(): void;
+```
+
+Moves cursor to the start of current line.
+
+#### LineEnd
+
+```typescript
+GoogleDocsUtils.moveCursorTo.LineEnd(): void;
+```
+
+Moves cursor to the start of current line.
+
+#### DocumentStart
+
+```typescript
+GoogleDocsUtils.moveCursorTo.DocumentStart(): void;
+```
+
+Moves cursor to the start of document.
+
+#### DocumentEnd
+
+```typescript
+GoogleDocsUtils.moveCursorTo.DocumentEnd(): void;
+```
+
+Moves cursor to the end of document.
+
+### select
+
+This namespace provides methods to select text content in document.
+
+#### All
+
+```typescript
+GoogleDocsUtils.select.All(): void;
+```
+
+Selects text of entire document.
+
+#### PrevCharacter
+
+```typescript
+GoogleDocsUtils.select.PrevCharacter(): void;
+```
+
+Selects a character that is placed to the left of current cursor position. Following logic will be used, with priority of actions from top to bottom:
+- if at least one character already selected with reverse selection (opposite direction), then lastly selected character will be deselected
+- if at least one character already selected, then next one will be selected. If that next character located on previous line, than that previous line will be used
+- if nothing selected, then first character will be selected
+
+#### NextCharacter
+
+```typescript
+GoogleDocsUtils.select.NextCharacter(): void;
+```
+
+Selects a character that is placed to the right of current cursor position. Following logic will be used, with priority of actions from top to bottom:
+- if at least one character already selected with reverse selection (opposite direction), then lastly selected character will be deselected
+- if at least one character already selected, then next one will be selected. If that next character located on next line, than that next line will be used
+- if nothing selected, then first character will be selected
+
+#### PrevWord
+
+```typescript
+GoogleDocsUtils.select.PrevWord(): void;
+```
+
+Same as `PrevCharacter`, but performs an action with word.
+
+#### NextWord
+
+```typescript
+GoogleDocsUtils.select.NextWord(): void;
+```
+
+Same as `NextCharacter`, but performs an action with word.
+
+#### PrevLine
+
+```typescript
+GoogleDocsUtils.select.PrevLine(): void;
+```
+
+Selects N number of characters to the left where N is a max length of line.
+
+#### NextLine
+
+```typescript
+GoogleDocsUtils.select.NextLine(): void;
+```
+
+Same as `PrevLine`, but uses right direction.
+
+#### PrevParagraph
+
+```typescript
+GoogleDocsUtils.select.PrevParagraph(): void;
+```
+
+Selects a paragraph that is placed to the left of current cursor position. Following logic will be used, with priority of actions from top to bottom:
+- if it is start of current paragraph, then previous paragraph will be selected
+- else text between current paragraph start and current cursor position will be selected
+
+#### NextParagraph
+
+```typescript
+GoogleDocsUtils.select.NextParagraph(): void;
+```
+
+Selects a paragraph that is placed to the right of current cursor position. Following logic will be used, with priority of actions from top to bottom:
+- if it is end of current paragraph, then next paragraph will be NOT selected
+- else text between current paragraph end and current cursor position will be selected
+
+#### TextBetweenCursorAndLineStart
+
+```typescript
+GoogleDocsUtils.select.TextBetweenCursorAndLineStart(): void;
+```
+
+Selects a text between current cursor position and current line start.
+
+#### TextBetweenCursorAndLineEnd
+
+```typescript
+GoogleDocsUtils.select.TextBetweenCursorAndLineEnd(): void;
+```
+
+Same as `TextBetweenCursorAndLineStart`, but interacts with current line end.
+
+#### TextBetweenCursorAndDocumentStart
+
+```typescript
+GoogleDocsUtils.select.TextBetweenCursorAndDocumentStart(): void;
+```
+
+Same as `TextBetweenCursorAndLineStart`, but interacts with document start.
+
+#### TextBetweenCursorAndDocumentEnd
+
+```typescript
+GoogleDocsUtils.select.TextBetweenCursorAndDocumentEnd(): void;
+```
+
+Same as `TextBetweenCursorAndLineStart`, but interacts with document end.
 
 
 ## Known limitations

@@ -8,6 +8,12 @@
  * - requires HTTP server to be executed.
  * - if you want to refresh script content,
  * just call this function again.
+ *
+ * If you will see error message about invalid certificate,
+ * then open script URL in new tab, click on "Proceed to unsafe"
+ * (or something like that), after that you should see loaded
+ * script content, and now back to Google Docs and call this
+ * method again.
  */
 function inject() {
     const script = document.createElement('script');
