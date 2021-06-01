@@ -1,6 +1,6 @@
 # WARNING: this project may no longer work after July 2021
 
-Google Docs plans to switch to canvas based rendering instead of HTML based rendering. Expected date around the end of July 2021.
+Google Docs plans to switch to canvas based rendering instead of HTML based rendering. Expected date is around the end of July 2021.
 
 This library relies on HTML based rendering. It is means that all existing functionality will stop working with new canvas based rendering. Highly unlikely that all existing functionality will be adopted to canvas based rendering.
 
