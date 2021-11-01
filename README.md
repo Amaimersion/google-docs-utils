@@ -6,6 +6,8 @@ This library relies on HTML based rendering. It is means that all existing funct
 
 See [#10](https://github.com/Amaimersion/google-docs-utils/issues/10) for more.
 
+See [this](https://github.com/Amaimersion/google-docs-utils/issues/10#issuecomment-956008973) for temporary workaround.
+
 
 # google-docs-utils
 
